@@ -7,7 +7,7 @@ package uk.co.zutty.pk_gw_001
     
     public class Background extends Entity {
 
-        [Embed(source = 'assets/background.png')]
+        [Embed(source = '/background.png')]
         private const BACKGROUND_IMAGE:Class;
         
         private var _gfx:Spritemap;

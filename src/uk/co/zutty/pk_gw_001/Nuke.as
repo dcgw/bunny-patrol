@@ -10,10 +10,10 @@ package uk.co.zutty.pk_gw_001
     
     public class Nuke extends Entity {
         
-        [Embed(source = 'assets/nuke.png')]
+        [Embed(source = '/nuke.png')]
         private const NUKE_IMAGE:Class;
 
-        [Embed(source = 'assets/nuke2.mp3')]
+        [Embed(source = '/nuke2.mp3')]
         private const NUKE_SOUND:Class;
         
         private var _gfx:Spritemap;

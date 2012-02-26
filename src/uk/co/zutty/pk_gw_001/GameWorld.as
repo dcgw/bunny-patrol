@@ -15,10 +15,10 @@ package uk.co.zutty.pk_gw_001
     
     public class GameWorld extends World {
         
-        [Embed(source = 'assets/nuclear_wind.mp3')]
+        [Embed(source = '/nuclear_wind.mp3')]
         private static const NUCLEAR_WIND_SOUND:Class;
         
-        [Embed(source = 'assets/vignette.png')]
+        [Embed(source = '/vignette.png')]
         private static const VIGNETTE_IMAGE:Class;
 
         private static const NUKE_COOLDOWN_FRAMES:int = 60;

@@ -9,12 +9,12 @@ package uk.co.zutty.pk_gw_001
 
     public class Main extends Engine {
         
-        [Embed(source = 'assets/BensonOrchestraOfChicago-BackInHackensackNewJersey1924.mp3')]
+        [Embed(source = '/BensonOrchestraOfChicago-BackInHackensackNewJersey1924.mp3')]
         private static const HAPPY_MUSIC:Class;
-        [Embed(source = 'assets/BachToccataFugue-compressed.mp3')]
+        [Embed(source = '/BachToccataFugue-compressed.mp3')]
         private static const SAD_MUSIC:Class;
 
-        [Embed(source = 'assets/knewave.ttf', embedAsCFF="false", fontFamily = 'knewave')]
+        [Embed(source = '/knewave.ttf', embedAsCFF="false", fontFamily = 'knewave')]
         private static const KNEWAVE_FONT:Class;
         
         public static const rabbits:Supplier = Supplier.newSupplier(96, function():Entity { return new NormalRabbit() });

@@ -13,7 +13,7 @@ package uk.co.zutty.pk_gw_001
     
     public class Corpses extends Graphic {
         
-        [Embed(source = 'assets/rabbit_splat2.png')]
+        [Embed(source = '/rabbit_splat2.png')]
         private const RABBIT_SPLAT_IMAGE:Class;
         private const splatBitmap:BitmapData = FP.getBitmap(RABBIT_SPLAT_IMAGE);
         

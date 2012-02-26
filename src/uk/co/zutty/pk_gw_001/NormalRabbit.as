@@ -2,7 +2,7 @@ package uk.co.zutty.pk_gw_001
 {
     public class NormalRabbit extends Rabbit {
         
-        [Embed(source = 'assets/rabbit2.png')]
+        [Embed(source = '/rabbit2.png')]
         private static const RABBIT_IMAGE:Class;
 
         public function NormalRabbit() {

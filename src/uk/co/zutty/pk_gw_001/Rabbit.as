@@ -11,11 +11,11 @@ package uk.co.zutty.pk_gw_001
         
         private const HOP_FRAMERATE:Number = 12;
 
-        [Embed(source = 'assets/hop.mp3')]
+        [Embed(source = '/hop.mp3')]
         private static const HOP1_SOUND:Class;
-        [Embed(source = 'assets/hop2.mp3')]
+        [Embed(source = '/hop2.mp3')]
         private static const HOP2_SOUND:Class;
-        [Embed(source = 'assets/hop3.mp3')]
+        [Embed(source = '/hop3.mp3')]
         private static const HOP3_SOUND:Class;
 
         private var _gfx:Spritemap;

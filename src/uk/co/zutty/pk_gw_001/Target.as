@@ -9,7 +9,7 @@ package uk.co.zutty.pk_gw_001
     
     public class Target extends Entity {
         
-        [Embed(source = 'assets/target.png')]
+        [Embed(source = '/target.png')]
         private const TARGET_IMAGE:Class;
 
         public function Target() {

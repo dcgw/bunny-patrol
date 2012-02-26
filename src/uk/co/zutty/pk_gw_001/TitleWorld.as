@@ -8,7 +8,7 @@ package uk.co.zutty.pk_gw_001
     
     public class TitleWorld extends World {
 
-        [Embed(source = 'assets/titlescreen.png')]
+        [Embed(source = '/titlescreen.png')]
         private const TITLE_IMAGE:Class;
 
         public function TitleWorld() {

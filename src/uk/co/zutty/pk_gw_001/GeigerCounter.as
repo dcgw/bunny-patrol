@@ -14,16 +14,16 @@ package uk.co.zutty.pk_gw_001
     
     public class GeigerCounter extends Entity {
         
-        [Embed(source = 'assets/click.mp3')]
+        [Embed(source = '/click.mp3')]
         private const CLICK_SOUND:Class;
-        [Embed(source = 'assets/click2.mp3')]
+        [Embed(source = '/click2.mp3')]
         private const CLICK2_SOUND:Class;
-        [Embed(source = 'assets/click3.mp3')]
+        [Embed(source = '/click3.mp3')]
         private const CLICK3_SOUND:Class;
         
-        [Embed(source = 'assets/dial.png')]
+        [Embed(source = '/dial.png')]
         private const DIAL_IMAGE:Class;
-        [Embed(source = 'assets/needle.png')]
+        [Embed(source = '/needle.png')]
         private const NEEDLE_IMAGE:Class;
 
         private var _show:Boolean;

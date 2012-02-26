@@ -14,10 +14,10 @@ package uk.co.zutty.pk_gw_001
     
     public class CropsIndicator extends Entity {
         
-        [Embed(source = 'assets/carrotnom.mp3')]
+        [Embed(source = '/carrotnom.mp3')]
         private const CRUNCH_SOUND:Class;
         
-        [Embed(source = 'assets/carrot.png')]
+        [Embed(source = '/carrot.png')]
         private const CARROT_IMAGE:Class;
 
         private var _crops:Number;
