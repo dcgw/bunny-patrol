@@ -1,0 +1,65 @@
+{
+  "private": true,
+  "name": "@dcgw/bunny-patrol",
+  "description": "TS rewrite of old game made for Pirate Kart 2012-in-one",
+  "version": "0.0.0-development",
+  "keywords": [
+    "game",
+    "typescript",
+    "pirate-kart"
+  ],
+  "author": {
+    "name": "George Weller",
+    "email": "george.weller@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Daniel Cassidy",
+      "email": "mail@danielcassidy.me.uk",
+      "url": "https://www.danielcassidy.me.uk/"
+    }
+  ],
+  "homepage": "https://github.com/dcgw/bunny-patrol",
+  "bugs": "https://github.com/dcgw/bunny-patrol",
+  "repository": "git@github.com:dcgw/bunny-patrol.git",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "webpack --env.production",
+    "semantic-release": "semantic-release",
+    "start": "webpack-dev-server --open",
+    "test": "tslint --project . && ava"
+  },
+  "dependencies": {
+    "tslib": "1.10.0"
+  },
+  "devDependencies": {
+    "@semantic-release/exec": "3.3.8",
+    "@softwareventures/tsconfig": "2.1.0",
+    "@softwareventures/tslint-rules": "0.7.1",
+    "@softwareventures/webpack-config": "0.20.0",
+    "ava": "2.4.0",
+    "cz-conventional-changelog": "3.0.2",
+    "semantic-release": "15.13.31",
+    "ts-loader": "6.2.1",
+    "ts-node": "8.5.2",
+    "tslint": "5.20.1",
+    "typescript": "3.7.2",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.9.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}
