@@ -1,7 +1,7 @@
 import domready from "domready";
 import {DisplayMode, Engine, Loader} from "excalibur";
-import Title from "./title/title";
 import resources from "./resources";
+import Title from "./title/title";
 
 domready(() => {
     const engine = new Engine({
@@ -17,5 +17,5 @@ domready(() => {
         .then(() => {
             engine.addScene("title", new Title(engine));
             engine.goToScene("title");
-        });
+        }, (err) => console.log("", err));
 });
