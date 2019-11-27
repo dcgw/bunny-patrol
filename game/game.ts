@@ -1,6 +1,7 @@
-import {Actor, BaseAlign, Color, Engine, FontUnit, Label, Scene, SpriteSheet, TextAlign, Vector} from "excalibur";
+import {Actor, BaseAlign, Color, Engine, FontUnit, Label, Scene, SpriteSheet, TextAlign, Util, Vector} from "excalibur";
 import {LabelArgs} from "excalibur/dist/Label";
 import resources from "../resources";
+import Rabbit from "./rabbit";
 
 enum State {
     intro,
@@ -16,6 +17,14 @@ const labelProto: LabelArgs = {
     baseAlign: BaseAlign.Top,
     color: Color.White
 };
+
+const spritesheet = new SpriteSheet({
+    image: resources.background,
+    spWidth: 320,
+    spHeight: 240,
+    rows: 1,
+    columns: 2
+});
 
 export default class Game extends Scene {
 
@@ -63,23 +72,21 @@ export default class Game extends Scene {
 
         this.engine = engine;
 
-        const spritesheet = new SpriteSheet({
-            image: resources.background,
-            spWidth: 320,
-            spHeight: 240,
-            rows: 1,
-            columns: 2
-        });
-
         this.background = new Actor({
             anchor: Vector.Zero
         });
+    }
+
+    public onInitialize(engine: Engine): void {
         this.background.addDrawing(spritesheet.getSprite(0));
         this.add(this.background);
 
         for (const line of this.startLines) {
             this.add(line);
         }
+        this.add(new Rabbit({
+            pos: new Vector(50, 170)
+        }));
     }
 
     public onActivate(): void {
@@ -88,6 +95,7 @@ export default class Game extends Scene {
             line.visible = true;
         }
         this.engine.input.pointers.primary.on("down", this.onClick);
+
     }
 
     public onDeactivate(): void {
@@ -95,16 +103,11 @@ export default class Game extends Scene {
     }
 
     public update(engine: Engine, delta: number): void {
-        /*
-        switch (this.state) {
-            case State.play:
-                this.state = State.end;
-                break;
-            case State.end:
-                this.state = State.intro;
-                break;
+        super.update(engine, delta);
+
+        if (Math.random() < 0.009) {
+            this.spawnRabbit();
         }
-         */
     }
 
     private advance(): void {
@@ -123,6 +126,12 @@ export default class Game extends Scene {
                 this.state = State.intro;
                 break;
         }
+    }
+
+    private spawnRabbit(): void {
+        this.add(new Rabbit({
+            pos: new Vector(-16, Util.randomIntInRange(170, 220))
+        }));
     }
 
     private readonly onClick = () => {

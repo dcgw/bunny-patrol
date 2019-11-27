@@ -11,9 +11,7 @@ domready(() => {
         displayMode: DisplayMode.Fixed
     });
 
-    const loader = new Loader();
-    loader.addResource(resources.titlescreen);
-    loader.addResource(resources.background);
+    const loader = new Loader(Object.values(resources));
 
     engine.start(loader)
         .then(() => {
