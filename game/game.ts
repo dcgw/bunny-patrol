@@ -2,6 +2,7 @@ import {Actor, BaseAlign, Color, Engine, FontUnit, Label, Scene, SpriteSheet, Te
 import {LabelArgs} from "excalibur/dist/Label";
 import resources from "../resources";
 import Rabbit from "./rabbit";
+import Reticle from "./reticle";
 
 enum State {
     intro,
@@ -62,6 +63,7 @@ export default class Game extends Scene {
     ];
 
     private readonly background: Actor;
+    private readonly reticle = new Reticle();
 
     private state: State = State.intro;
 
@@ -118,9 +120,12 @@ export default class Game extends Scene {
                 for (const line of this.startLines) {
                     line.visible = false;
                 }
+
+                this.add(this.reticle);
                 break;
             case State.play:
                 this.state = State.end;
+                this.reticle.kill();
                 break;
             case State.end:
                 this.state = State.intro;
