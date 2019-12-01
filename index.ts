@@ -8,8 +8,12 @@ domready(() => {
     const engine = new Engine({
         width: 320,
         height: 240,
-        displayMode: DisplayMode.Fixed
+        displayMode: DisplayMode.Fixed,
+        suppressPlayButton: true
     });
+
+    engine.canvas.style.width = "640px";
+    engine.canvas.style.height = "480px";
 
     const loader = new Loader(Object.values(resources));
 
