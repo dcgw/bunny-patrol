@@ -11,11 +11,11 @@ import reticle from "./game/reticle.png";
 import titlescreen from "./title/titlescreen.png";
 
 export default {
-    titlescreen: new Texture(titlescreen),
     background: new Texture(background),
-    rabbit: new Texture(rabbit),
     hop1: new Sound(hopOgg, hopMp3),
     hop2: new Sound(hop2Ogg, hop2Mp3),
     hop3: new Sound(hop3Ogg, hop3Mp3),
-    reticle: new Texture(reticle)
+    rabbit: new Texture(rabbit),
+    reticle: new Texture(reticle),
+    titlescreen: new Texture(titlescreen)
 };
