@@ -1,6 +1,6 @@
-import {Actor, BaseAlign, Color, Engine, FontUnit, Label, Scene, SpriteSheet, TextAlign, Util, Vector} from "excalibur";
+import {BaseAlign, Color, Engine, FontUnit, Label, Scene, TextAlign, Util, Vector} from "excalibur";
 import {LabelArgs} from "excalibur/dist/Label";
-import resources from "../resources";
+import Background from "./background";
 import Rabbit from "./rabbit";
 import Reticle from "./reticle";
 
@@ -18,14 +18,6 @@ const labelProto: LabelArgs = {
     baseAlign: BaseAlign.Top,
     color: Color.White
 };
-
-const spritesheet = new SpriteSheet({
-    image: resources.background,
-    spWidth: 320,
-    spHeight: 240,
-    rows: 1,
-    columns: 2
-});
 
 export default class Game extends Scene {
 
@@ -62,7 +54,9 @@ export default class Game extends Scene {
         })
     ];
 
-    private readonly background: Actor;
+    private readonly background = new Background({
+        anchor: Vector.Zero
+    });
     private readonly reticle = new Reticle();
 
     private state: State = State.intro;
@@ -73,14 +67,9 @@ export default class Game extends Scene {
         super(engine);
 
         this.engine = engine;
-
-        this.background = new Actor({
-            anchor: Vector.Zero
-        });
     }
 
     public onInitialize(engine: Engine): void {
-        this.background.addDrawing(spritesheet.getSprite(0));
         this.add(this.background);
 
         for (const line of this.startLines) {
