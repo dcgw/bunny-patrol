@@ -31,7 +31,9 @@ export default class Title extends Scene {
         super(engine);
 
         this.engine = engine;
+    }
 
+    public onActivate(): void {
         const background = new Actor({
             anchor: Vector.Zero
         });
@@ -40,9 +42,10 @@ export default class Title extends Scene {
 
         this.add(this.titleLabel);
         this.add(this.startLabel);
-    }
 
-    public onActivate(): void {
+        resources.happyMusic.loop = true;
+        resources.happyMusic.play().then(() => void 0, (err) => console.log("", err));
+
         this.engine.input.pointers.primary.on("down", this.onClick);
     }
 
