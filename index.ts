@@ -14,6 +14,7 @@ domready(() => {
 
     engine.canvas.style.width = "640px";
     engine.canvas.style.height = "480px";
+    engine.canvas.style.imageRendering = "pixelated";
 
     const loader = new Loader(Object.values(resources));
 
