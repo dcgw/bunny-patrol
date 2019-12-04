@@ -92,7 +92,7 @@
                 "dir": "./dist"
               },
               "dest": {
-                "bucket": "super-metronome-hero"
+                "bucket": "bunny-patrol"
               }
             }
           ]
