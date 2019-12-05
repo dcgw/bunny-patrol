@@ -1,6 +1,7 @@
 import {BaseAlign, Color, Engine, FontUnit, Label, Scene, TextAlign, Util, Vector} from "excalibur";
 import {LabelArgs} from "excalibur/dist/Label";
 import Background from "./background";
+import Crops from "./crops";
 import Rabbit from "./rabbit";
 import Reticle from "./reticle";
 
@@ -57,6 +58,9 @@ export default class Game extends Scene {
     private readonly background = new Background({
         anchor: Vector.Zero
     });
+    private readonly crops = new Crops({
+        pos: new Vector(280, 30)
+    });
     private readonly reticle = new Reticle();
 
     private state: State = State.intro;
@@ -71,6 +75,7 @@ export default class Game extends Scene {
 
     public onInitialize(engine: Engine): void {
         this.add(this.background);
+        this.addUIActor(this.crops);
 
         for (const line of this.startLines) {
             this.add(line);
@@ -86,7 +91,7 @@ export default class Game extends Scene {
             line.visible = true;
         }
         this.engine.input.pointers.primary.on("down", this.onClick);
-
+        this.on("eatcrops", () => this.crops.value--);
     }
 
     public onDeactivate(): void {
@@ -124,7 +129,8 @@ export default class Game extends Scene {
 
     private spawnRabbit(): void {
         this.add(new Rabbit({
-            pos: new Vector(-16, Util.randomIntInRange(170, 220))
+            pos: new Vector(-16, Util.randomIntInRange(170, 220)),
+            isOffScreen: true
         }));
     }
 

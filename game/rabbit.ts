@@ -1,4 +1,4 @@
-import {Actor, Animation, Engine, Sound, SpriteSheet, Util} from "excalibur";
+import {Actor, Animation, Engine, GameEvent, Sound, SpriteSheet, Util} from "excalibur";
 import resources from "../resources";
 
 const spritesheet = new SpriteSheet({
@@ -27,6 +27,11 @@ export default class Rabbit extends Actor {
         this.hopSound = [resources.hop1, resources.hop2, resources.hop3][Util.randomIntInRange(0, 2)];
 
         this.setZIndex(this.pos.y);
+
+        this.on("exitviewport", (evt) => {
+            evt.target.scene.emit("eatcrops", new GameEvent<any>());
+            evt.target.kill();
+        });
     }
 
     public update(engine: Engine, delta: number): void {
@@ -42,11 +47,6 @@ export default class Rabbit extends Actor {
             }
         } else if (Math.random() <= 0.02) {
             this.hop();
-        }
-
-        if (this.isOffScreen && this.pos.x > 0) {
-            console.log("BYE");
-            this.kill();
         }
     }
 
