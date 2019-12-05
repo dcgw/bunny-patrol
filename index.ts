@@ -9,7 +9,8 @@ domready(() => {
         width: 320,
         height: 240,
         displayMode: DisplayMode.Fixed,
-        suppressPlayButton: true
+        suppressPlayButton: true,
+        suppressHiDPIScaling: true
     });
 
     engine.canvas.style.width = "640px";
