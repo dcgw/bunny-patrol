@@ -78,7 +78,7 @@ export default class Game extends Scene {
         this.addUIActor(this.crops);
 
         for (const line of this.startLines) {
-            this.add(line);
+            this.addUIActor(line);
         }
         this.add(new Rabbit({
             pos: new Vector(50, 170)
@@ -115,7 +115,7 @@ export default class Game extends Scene {
                     line.visible = false;
                 }
 
-                this.add(this.reticle);
+                this.addUIActor(this.reticle);
                 break;
             case State.play:
                 this.state = State.end;
