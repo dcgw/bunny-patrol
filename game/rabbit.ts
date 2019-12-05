@@ -1,7 +1,7 @@
 import {Actor, Animation, Engine, GameEvent, Sound, SpriteSheet, Util} from "excalibur";
 import resources from "../resources";
 
-const spritesheet = new SpriteSheet({
+const spriteSheet = new SpriteSheet({
     image: resources.rabbit,
     spWidth: 24,
     spHeight: 24,
@@ -17,10 +17,10 @@ export default class Rabbit extends Actor {
     private hopSound: Sound = resources.hop1;
 
     public onInitialize(engine: Engine): void {
-        this.addDrawing("sit", spritesheet.getAnimationByIndices(engine, [0, 1], 166));
+        this.addDrawing("sit", spriteSheet.getAnimationByIndices(engine, [0, 1], 166));
         this.setDrawing("sit");
 
-        this.hopAnim = spritesheet.getAnimationByIndices(engine, [2, 3, 4, 5, 6], 83);
+        this.hopAnim = spriteSheet.getAnimationByIndices(engine, [2, 3, 4, 5, 6], 83);
         this.hopAnim.loop = false;
         this.addDrawing("hop", this.hopAnim);
 
