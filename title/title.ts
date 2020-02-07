@@ -1,28 +1,33 @@
-import {Actor, BaseAlign, Color, Engine, FontUnit, Label, Scene, TextAlign, Vector} from "excalibur";
+import {Actor, BaseAlign, Color, Engine, FontUnit, Scene, TextAlign, Vector} from "excalibur";
+import glowLabel from "../glow-label";
 import resources from "../resources";
 
 export default class Title extends Scene {
 
-    private readonly titleLabel = new Label({
+    private readonly titleLabel = glowLabel({
         text: "Bunny Patrol",
-        pos: new Vector(160, 60),
+        pos: new Vector(160, 45),
         fontFamily: "Knewave",
         fontSize: 40,
         fontUnit: FontUnit.Px,
         textAlign: TextAlign.Center,
         baseAlign: BaseAlign.Top,
-        color: Color.fromHex("999933")
+        color: Color.fromHex("999933"),
+        glowColor: Color.Black,
+        glowWidth: 2.5
     });
 
-    private readonly startLabel = new Label({
+    private readonly startLabel = glowLabel({
         text: "Click to Play",
-        pos: new Vector(160, 200),
+        pos: new Vector(160, 195),
         fontFamily: "Knewave",
         fontSize: 18,
         fontUnit: FontUnit.Px,
         textAlign: TextAlign.Center,
         baseAlign: BaseAlign.Top,
-        color: Color.fromHex("993333")
+        color: Color.fromHex("993333"),
+        glowColor: Color.Black,
+        glowWidth: 2.5
     });
 
     private readonly engine: Engine;
