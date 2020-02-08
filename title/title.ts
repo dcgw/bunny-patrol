@@ -30,35 +30,21 @@ export default class Title extends Scene {
         glowWidth: 2.5
     });
 
-    private readonly engine: Engine;
-
-    constructor(engine: Engine) {
-        super(engine);
-
-        this.engine = engine;
-    }
-
-    public onActivate(): void {
+    public onInitialize(engine: Engine): void {
         const background = new Actor({
             anchor: Vector.Zero
         });
         background.addDrawing(resources.titlescreen);
         this.add(background);
 
-        this.add(this.titleLabel);
-        this.add(this.startLabel);
+        this.addUIActor(this.titleLabel);
+        this.addUIActor(this.startLabel);
 
         resources.happyMusic.loop = true;
         resources.happyMusic.play().then(() => void 0, (err) => console.log("", err));
 
-        this.engine.input.pointers.primary.on("down", this.onClick);
-    }
-
-    public onDeactivate(): void {
-        this.engine.input.pointers.primary.off("down", this.onClick);
-    }
-
-    private readonly onClick = () => {
-        this.engine.goToScene("game");
+        this.on("activate", () => {
+            engine.input.pointers.primary.once("down", () => engine.goToScene("game"));
+        });
     }
 }
