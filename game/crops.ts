@@ -1,17 +1,18 @@
-import {Actor, BaseAlign, Color, Engine, FontUnit, Label, Vector} from "excalibur";
+import {Actor, Color, Engine, TextAlign, Vector} from "excalibur";
+import glowLabel from "../glow-label";
+import {labelDefaults} from "../index";
 import resources from "../resources";
 
 export default class Crops extends Actor {
 
     private cropsValue: number = 10;
 
-    private readonly label = new Label({
+    private readonly label = glowLabel({
+        ...labelDefaults,
         text: `${this.cropsValue}`,
         pos: new Vector(2, -3),
-        fontFamily: "Knewave",
         fontSize: 24,
-        fontUnit: FontUnit.Px,
-        baseAlign: BaseAlign.Top,
+        textAlign: TextAlign.Left,
         color: Color.fromHex("FFFFFF")
     });
 
