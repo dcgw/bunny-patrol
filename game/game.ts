@@ -1,4 +1,4 @@
-import {Color, Engine, Scene, Util, Vector} from "excalibur";
+import {Actor, Color, Engine, Scene, Util, Vector} from "excalibur";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
 import Background from "./background";
@@ -67,10 +67,6 @@ export default class Game extends Scene {
         this.addUIActor(this.gameOverLabel);
         this.addUIActor(this.reticle);
 
-        this.add(new Rabbit({
-            pos: new Vector(50, 170)
-        }));
-
         this.on("eatcrops", () => this.crops.value--);
     }
 
@@ -82,6 +78,13 @@ export default class Game extends Scene {
         this.continueLabel.visible = true;
         this.reticle.visible = false;
 
+        // Spawn starting rabbits
+        for (let i = 0; i < 4; i++) {
+            this.add(new Rabbit({
+                pos: new Vector(Util.randomIntInRange(50, 250), Util.randomIntInRange(170, 220))
+            }));
+        }
+
         this.crops.value = 10;
 
         this.engine.input.pointers.primary.once("down", () => this.statePlay());
@@ -90,18 +93,21 @@ export default class Game extends Scene {
     public onDeactivate(): void {
         this.gameOverLabel.visible = false;
         this.gameOverLabel.kill();
+        this.rabbits.forEach(rabbit => rabbit.kill());
     }
 
     public update(engine: Engine, delta: number): void {
         super.update(engine, delta);
 
-        if (Math.random() < 0.009) {
-            this.spawnRabbit();
-        }
+        if (this.state === State.play) {
+            if (Math.random() < 0.009) {
+                this.spawnRabbit();
+            }
 
-        if (this.crops.value <= 0 && this.state === State.play) {
-            this.messageLabel.text = CROPS_MESSAGE;
-            this.stateEnd();
+            if (this.crops.value <= 0) {
+                this.messageLabel.text = CROPS_MESSAGE;
+                this.stateEnd();
+            }
         }
     }
 
@@ -112,6 +118,8 @@ export default class Game extends Scene {
 
         this.reticle.visible = true;
         this.engine.canvas.style.cursor = "none";
+
+        this.rabbits.forEach(rabbit => rabbit.active = true);
 
         this.engine.input.pointers.primary.on("down", this.onClick);
     }
@@ -131,10 +139,16 @@ export default class Game extends Scene {
     }
 
     private spawnRabbit(): void {
-        this.add(new Rabbit({
+        const rabbit = new Rabbit({
             pos: new Vector(-16, Util.randomIntInRange(170, 220)),
             isOffScreen: true
-        }));
+        });
+        rabbit.active = true;
+        this.add(rabbit);
+    }
+
+    get rabbits(): Rabbit[] {
+        return this.actors.filter((actor: Actor): actor is Rabbit => actor instanceof Rabbit);
     }
 
     private readonly onClick = () => {

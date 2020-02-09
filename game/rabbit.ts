@@ -11,6 +11,8 @@ const spriteSheet = new SpriteSheet({
 
 export default class Rabbit extends Actor {
 
+    public active: boolean = false;
+
     private baseSpeed: number = 1;
     private hopSpeed: number = 5;
     private hopAnim?: Animation;
@@ -45,7 +47,7 @@ export default class Rabbit extends Actor {
                 // Still hopping
                 this.pos.x += this.hopSpeed;
             }
-        } else if (Math.random() <= 0.02) {
+        } else if (this.active && Math.random() <= 0.02) {
             this.hop();
         }
     }
