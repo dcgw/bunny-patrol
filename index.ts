@@ -1,8 +1,20 @@
 import domready from "domready";
-import {DisplayMode, Engine, Loader} from "excalibur";
+import {BaseAlign, Color, DisplayMode, Engine, FontUnit, Loader, TextAlign} from "excalibur";
 import Game from "./game/game";
+import {GlowLabelArgs} from "./glow-label";
 import resources from "./resources";
 import Title from "./title/title";
+
+export const labelDefaults: GlowLabelArgs = {
+    fontFamily: "Knewave",
+    fontSize: 18,
+    fontUnit: FontUnit.Px,
+    textAlign: TextAlign.Center,
+    baseAlign: BaseAlign.Top,
+    color: Color.White,
+    glowColor: Color.Black,
+    glowWidth: 2.5
+};
 
 domready(() => {
     const engine = new Engine({

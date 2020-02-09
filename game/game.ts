@@ -1,5 +1,6 @@
-import {BaseAlign, Color, Engine, FontUnit, Scene, TextAlign, Util, Vector} from "excalibur";
+import {Color, Engine, Scene, Util, Vector} from "excalibur";
 import glowLabel from "../glow-label";
+import {labelDefaults} from "../index";
 import Background from "./background";
 import Crops from "./crops";
 import Rabbit from "./rabbit";
@@ -14,31 +15,18 @@ enum State {
 export default class Game extends Scene {
 
     private readonly startMessage = glowLabel({
+        ...labelDefaults,
         text: "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.",
         pos: new Vector(160, 50),
-        fontFamily: "Knewave",
-        fontSize: 18,
-        fontUnit: FontUnit.Px,
-        textAlign: TextAlign.Center,
-        baseAlign: BaseAlign.Top,
-        color: Color.White,
-        glowColor: Color.Black,
-        glowWidth: 2.5,
         wrapWidth: 260,
         lineHeight: 25
     });
 
     private readonly continueLabel = glowLabel({
+        ...labelDefaults,
         text: "Click to Continue",
         pos: new Vector(160, 200),
-        fontFamily: "Knewave",
-        fontSize: 18,
-        fontUnit: FontUnit.Px,
-        textAlign: TextAlign.Center,
-        baseAlign: BaseAlign.Top,
-        color: Color.fromHex("993333"),
-        glowColor: Color.Black,
-        glowWidth: 2.5
+        color: Color.fromHex("993333")
     });
 
     private readonly background = new Background({
