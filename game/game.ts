@@ -1,5 +1,5 @@
-import {BaseAlign, Color, Engine, FontUnit, Label, Scene, TextAlign, Util, Vector} from "excalibur";
-import {LabelArgs} from "excalibur/dist/Label";
+import {BaseAlign, Color, Engine, FontUnit, Scene, TextAlign, Util, Vector} from "excalibur";
+import glowLabel from "../glow-label";
 import Background from "./background";
 import Crops from "./crops";
 import Rabbit from "./rabbit";
@@ -11,49 +11,35 @@ enum State {
     end
 }
 
-const labelProto: LabelArgs = {
-    fontFamily: "Knewave",
-    fontSize: 18,
-    fontUnit: FontUnit.Px,
-    textAlign: TextAlign.Center,
-    baseAlign: BaseAlign.Top,
-    color: Color.White
-};
-
 export default class Game extends Scene {
 
-    private readonly startLines = [
-        new Label({
-            ...labelProto,
-            pos: new Vector(160, 70),
-            text: "These darn rabbits are eating",
-        }),
-        new Label({
-            ...labelProto,
-            pos: new Vector(160, 100),
-            text: "all of Farmer Bill's crops! He",
-        }),
-        new Label({
-            ...labelProto,
-            pos: new Vector(160, 130),
-            text: "needs you to help deal with",
-        }),
-        new Label({
-            ...labelProto,
-            pos: new Vector(160, 160),
-            text: "them.",
-        }),
-        new Label({
-            text: "Click to Continue",
-            pos: new Vector(160, 200),
-            fontFamily: "Knewave",
-            fontSize: 18,
-            fontUnit: FontUnit.Px,
-            textAlign: TextAlign.Center,
-            baseAlign: BaseAlign.Top,
-            color: Color.fromHex("993333")
-        })
-    ];
+    private readonly startMessage = glowLabel({
+        text: "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.",
+        pos: new Vector(160, 50),
+        fontFamily: "Knewave",
+        fontSize: 18,
+        fontUnit: FontUnit.Px,
+        textAlign: TextAlign.Center,
+        baseAlign: BaseAlign.Top,
+        color: Color.White,
+        glowColor: Color.Black,
+        glowWidth: 2.5,
+        wrapWidth: 260,
+        lineHeight: 25
+    });
+
+    private readonly continueLabel = glowLabel({
+        text: "Click to Continue",
+        pos: new Vector(160, 200),
+        fontFamily: "Knewave",
+        fontSize: 18,
+        fontUnit: FontUnit.Px,
+        textAlign: TextAlign.Center,
+        baseAlign: BaseAlign.Top,
+        color: Color.fromHex("993333"),
+        glowColor: Color.Black,
+        glowWidth: 2.5
+    });
 
     private readonly background = new Background({
         anchor: Vector.Zero
@@ -76,10 +62,9 @@ export default class Game extends Scene {
     public onInitialize(engine: Engine): void {
         this.add(this.background);
         this.addUIActor(this.crops);
+        this.addUIActor(this.startMessage);
+        this.addUIActor(this.continueLabel);
 
-        for (const line of this.startLines) {
-            this.addUIActor(line);
-        }
         this.add(new Rabbit({
             pos: new Vector(50, 170)
         }));
@@ -87,9 +72,9 @@ export default class Game extends Scene {
 
     public onActivate(): void {
         this.state = State.intro;
-        for (const line of this.startLines) {
-            line.visible = true;
-        }
+        this.startMessage.visible = true;
+        this.continueLabel.visible = true;
+
         this.engine.input.pointers.primary.on("down", this.onClick);
         this.on("eatcrops", () => this.crops.value--);
     }
@@ -111,9 +96,8 @@ export default class Game extends Scene {
             case State.intro:
                 this.state = State.play;
 
-                for (const line of this.startLines) {
-                    line.visible = false;
-                }
+                this.startMessage.visible = false;
+                this.continueLabel.visible = false;
 
                 this.addUIActor(this.reticle);
                 break;
