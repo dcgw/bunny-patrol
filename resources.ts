@@ -10,6 +10,7 @@ import hop2Ogg from "./game/hop2.ogg";
 import hop3Mp3 from "./game/hop3.mp3";
 import hop3Ogg from "./game/hop3.ogg";
 import rabbit from "./game/rabbit2.png";
+import rabbitSplat from "./game/rabbit-splat2.png";
 import reticle from "./game/reticle.png";
 import happyMusicMp3 from "./music/happy.mp3";
 import titlescreen from "./title/titlescreen.png";
@@ -22,6 +23,7 @@ export default {
     hop2: new Sound(hop2Ogg, hop2Mp3),
     hop3: new Sound(hop3Ogg, hop3Mp3),
     rabbit: new Texture(rabbit),
+    rabbitSplat: new Texture(rabbitSplat),
     reticle: new Texture(reticle),
     happyMusic: new Sound(happyMusicMp3),
     titlescreen: new Texture(titlescreen)

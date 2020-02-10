@@ -22,6 +22,8 @@ export default class Rabbit extends Actor {
         this.addDrawing("sit", spriteSheet.getAnimationByIndices(engine, [0, 1], 166));
         this.setDrawing("sit");
 
+        this.addDrawing("dead", resources.rabbitSplat.asSprite());
+
         this.hopAnim = spriteSheet.getAnimationByIndices(engine, [2, 3, 4, 5, 6], 83);
         this.hopAnim.loop = false;
         this.addDrawing("hop", this.hopAnim);
@@ -50,6 +52,12 @@ export default class Rabbit extends Actor {
         } else if (this.active && Math.random() <= 0.02) {
             this.hop();
         }
+    }
+
+    public die(): void {
+        this.active = false;
+        this.setDrawing("dead");
+        this.setZIndex(this.pos.y - 50);
     }
 
     private hop(): void {

@@ -152,6 +152,6 @@ export default class Game extends Scene {
     }
 
     private readonly onClick = () => {
-        console.log("fire nuke");
+        this.rabbits.forEach(rabbit => rabbit.die());
     }
 }
