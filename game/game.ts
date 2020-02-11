@@ -1,8 +1,12 @@
-import {Actor, Color, Engine, Scene, Util, Vector} from "excalibur";
+import {Actor, Color, Engine, GameEvent, Scene, Util, Vector} from "excalibur";
+import {PointerEvent} from "excalibur/dist/Input/Pointer";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
+import resources from "../resources";
 import Background from "./background";
 import Crops from "./crops";
+import Nuke from "./nuke";
+import NukeFlash from "./nuke-flash";
 import Rabbit from "./rabbit";
 import Reticle from "./reticle";
 
@@ -54,6 +58,10 @@ export default class Game extends Scene {
     });
 
     private state: State = State.intro;
+    private nuked: boolean = false;
+    private readonly nuke = new Nuke();
+    private readonly nukeFlash = new NukeFlash();
+    private readonly nuclearWind = resources.nuclearWind;
 
     constructor(private readonly engine: Engine) {
         super(engine);
@@ -66,6 +74,9 @@ export default class Game extends Scene {
         this.addUIActor(this.continueLabel);
         this.addUIActor(this.gameOverLabel);
         this.addUIActor(this.reticle);
+
+        this.add(this.nuke);
+        this.add(this.nukeFlash);
 
         this.on("eatcrops", () => this.crops.value--);
     }
@@ -86,6 +97,8 @@ export default class Game extends Scene {
         }
 
         this.crops.value = 10;
+        this.background.state = "pre";
+        this.nuked = false;
 
         this.engine.input.pointers.primary.once("down", () => this.statePlay());
     }
@@ -94,6 +107,7 @@ export default class Game extends Scene {
         this.gameOverLabel.visible = false;
         this.gameOverLabel.kill();
         this.rabbits.forEach(rabbit => rabbit.kill());
+        this.nuclearWind.instances.forEach(snd => snd.stop());
     }
 
     public update(engine: Engine, delta: number): void {
@@ -121,7 +135,7 @@ export default class Game extends Scene {
 
         this.rabbits.forEach(rabbit => rabbit.active = true);
 
-        this.engine.input.pointers.primary.on("down", this.onClick);
+        this.engine.input.pointers.primary.on("down", this.nukeRabbits);
     }
 
     private stateEnd(): void {
@@ -134,7 +148,7 @@ export default class Game extends Scene {
         this.reticle.visible = false;
         this.engine.canvas.style.cursor = "default";
 
-        this.engine.input.pointers.primary.off("down", this.onClick);
+        this.engine.input.pointers.primary.off("down", this.nukeRabbits);
         this.engine.input.pointers.primary.once("down", () => this.engine.goToScene("title"));
     }
 
@@ -151,7 +165,18 @@ export default class Game extends Scene {
         return this.actors.filter((actor: Actor): actor is Rabbit => actor instanceof Rabbit);
     }
 
-    private readonly onClick = () => {
+    private readonly nukeRabbits = (evt: GameEvent<any>) => {
+        if (!this.nuked) {
+            this.background.state = "post";
+
+            this.nuclearWind.loop = true;
+            this.nuclearWind.play(0.6)
+                .then(() => void 0, (err) => console.log("", err));
+
+            this.nuked = true;
+        }
+        this.nuke.detonate((evt as PointerEvent).worldPos);
+        this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
     }
 }
