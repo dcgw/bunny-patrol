@@ -6,6 +6,7 @@ import playMusic from "../music/music";
 import resources from "../resources";
 import Background from "./background";
 import Crops from "./crops";
+import GeigerCounter from "./geiger-counter";
 import Nuke from "./nuke";
 import NukeFlash from "./nuke-flash";
 import Rabbit from "./rabbit";
@@ -21,7 +22,7 @@ enum State {
 const START_MESSAGE = "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.";
 const CROPS_MESSAGE = "The rabbits ate all the crops.";
 const CROPS_NUKED_MESSAGE = "There is nothing left for the survivors to eat.";
-// const DOOMED_MESSAGE = "Oh the humanity! You've doomed mankind.";
+const DOOMED_MESSAGE = "Oh the humanity! You've doomed mankind.";
 
 const NUKE_COOLDOWN_MILLIS = 1000;
 
@@ -61,6 +62,10 @@ export default class Game extends Scene {
         visible: false
     });
     private readonly vignette = new Vignette();
+    private readonly geigerCounter = new GeigerCounter({
+        pos: new Vector(60, 50),
+        visible: false
+    });
 
     private state: State = State.intro;
     private spawnRate: number = 0.02;
@@ -78,6 +83,7 @@ export default class Game extends Scene {
         this.add(this.background);
         this.addUIActor(this.vignette);
         this.addUIActor(this.crops);
+        this.addUIActor(this.geigerCounter);
         this.addUIActor(this.messageLabel);
         this.addUIActor(this.continueLabel);
         this.addUIActor(this.gameOverLabel);
@@ -108,6 +114,8 @@ export default class Game extends Scene {
         this.background.state = "pre";
         this.spawnRate = 0.02;
         this.nuked = false;
+        this.geigerCounter.visible = false;
+        this.geigerCounter.rads = 0;
         this.vignette.visible = false;
 
         this.engine.input.pointers.primary.once("down", () => this.statePlay());
@@ -135,8 +143,11 @@ export default class Game extends Scene {
             // Increase spawn rate over time, capped at 0.3
             this.spawnRate = Math.min(this.spawnRate + (delta * 0.000003), 0.3);
 
-            if (this.crops.value <= 0) {
-                this.messageLabel.text = this.nuked ? CROPS_NUKED_MESSAGE : CROPS_MESSAGE;
+            // Test lose conditions
+            if (this.crops.value <= 0 || this.geigerCounter.rads >= 0.95) {
+                this.messageLabel.text = this.crops.value <= 0
+                    ? this.nuked ? CROPS_NUKED_MESSAGE : CROPS_MESSAGE
+                    : DOOMED_MESSAGE;
                 this.stateEnd();
             }
         }
@@ -191,6 +202,7 @@ export default class Game extends Scene {
             this.nuked = true;
             this.vignette.visible = true;
             this.background.state = "post";
+            this.geigerCounter.visible = true;
 
             this.nuclearWind.loop = true;
             this.nuclearWind.play(0.6)
@@ -200,6 +212,7 @@ export default class Game extends Scene {
         }
 
         this.nukeCooldown = NUKE_COOLDOWN_MILLIS;
+        this.geigerCounter.rads += 0.35;
         this.nuke.detonate((evt as PointerEvent).worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
