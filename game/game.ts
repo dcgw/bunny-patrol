@@ -23,7 +23,7 @@ const CROPS_MESSAGE = "The rabbits ate all the crops.";
 const CROPS_NUKED_MESSAGE = "There is nothing left for the survivors to eat.";
 // const DOOMED_MESSAGE = "Oh the humanity! You've doomed mankind.";
 
-const NUKE_COOLDOWN_FRAMES = 60;
+const NUKE_COOLDOWN_MILLIS = 1000;
 
 export default class Game extends Scene {
 
@@ -124,7 +124,7 @@ export default class Game extends Scene {
         super.update(engine, delta);
 
         if (this.nukeCooldown > 0) {
-            this.nukeCooldown--;
+            this.nukeCooldown -= delta;
         }
 
         if (this.state === State.play) {
@@ -133,7 +133,7 @@ export default class Game extends Scene {
             }
 
             // Increase spawn rate over time, capped at 0.3
-            this.spawnRate = Math.min(this.spawnRate + 0.00005, 0.3);
+            this.spawnRate = Math.min(this.spawnRate + (delta * 0.000003), 0.3);
 
             if (this.crops.value <= 0) {
                 this.messageLabel.text = this.nuked ? CROPS_NUKED_MESSAGE : CROPS_MESSAGE;
@@ -199,7 +199,7 @@ export default class Game extends Scene {
             playMusic("sad");
         }
 
-        this.nukeCooldown = NUKE_COOLDOWN_FRAMES;
+        this.nukeCooldown = NUKE_COOLDOWN_MILLIS;
         this.nuke.detonate((evt as PointerEvent).worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
