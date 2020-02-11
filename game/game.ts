@@ -56,7 +56,8 @@ export default class Game extends Scene {
         anchor: Vector.Zero
     });
     private readonly crops = new Crops({
-        pos: new Vector(280, 30)
+        pos: new Vector(280, 30),
+        visible: false
     });
     private readonly reticle = new Reticle({
         visible: false
@@ -114,7 +115,6 @@ export default class Game extends Scene {
         this.background.state = "pre";
         this.spawnRate = 0.02;
         this.nuked = false;
-        this.geigerCounter.visible = false;
         this.geigerCounter.rads = 0;
         this.vignette.visible = false;
 
@@ -158,6 +158,7 @@ export default class Game extends Scene {
         this.messageLabel.visible = false;
         this.continueLabel.visible = false;
 
+        this.crops.visible = true;
         this.reticle.visible = true;
         this.engine.canvas.style.cursor = "none";
 
@@ -173,6 +174,8 @@ export default class Game extends Scene {
         this.continueLabel.visible = true;
         this.gameOverLabel.visible = true;
 
+        this.crops.visible = false;
+        this.geigerCounter.visible = false;
         this.reticle.visible = false;
         this.engine.canvas.style.cursor = "default";
 
