@@ -2,6 +2,7 @@ import {Actor, Color, Engine, GameEvent, Scene, Util, Vector} from "excalibur";
 import {PointerEvent} from "excalibur/dist/Input/Pointer";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
+import playMusic from "../music/music";
 import resources from "../resources";
 import Background from "./background";
 import Crops from "./crops";
@@ -172,6 +173,8 @@ export default class Game extends Scene {
             this.nuclearWind.loop = true;
             this.nuclearWind.play(0.6)
                 .then(() => void 0, (err) => console.log("", err));
+
+            playMusic("sad");
 
             this.nuked = true;
         }

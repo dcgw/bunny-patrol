@@ -1,6 +1,7 @@
 import {Actor, Color, Engine, Scene, Vector} from "excalibur";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
+import playMusic from "../music/music";
 import resources from "../resources";
 
 export default class Title extends Scene {
@@ -30,10 +31,8 @@ export default class Title extends Scene {
         this.addUIActor(this.titleLabel);
         this.addUIActor(this.startLabel);
 
-        resources.happyMusic.loop = true;
-        resources.happyMusic.play().then(() => void 0, (err) => console.log("", err));
-
         this.on("activate", () => {
+            playMusic("happy");
             engine.input.pointers.primary.once("down", () => engine.goToScene("game"));
         });
     }
