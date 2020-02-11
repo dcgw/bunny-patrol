@@ -10,6 +10,7 @@ import Nuke from "./nuke";
 import NukeFlash from "./nuke-flash";
 import Rabbit from "./rabbit";
 import Reticle from "./reticle";
+import Vignette from "./vignette";
 
 enum State {
     intro,
@@ -57,6 +58,7 @@ export default class Game extends Scene {
     private readonly reticle = new Reticle({
         visible: false
     });
+    private readonly vignette = new Vignette();
 
     private state: State = State.intro;
     private nuked: boolean = false;
@@ -70,6 +72,7 @@ export default class Game extends Scene {
 
     public onInitialize(engine: Engine): void {
         this.add(this.background);
+        this.addUIActor(this.vignette);
         this.addUIActor(this.crops);
         this.addUIActor(this.messageLabel);
         this.addUIActor(this.continueLabel);
@@ -100,6 +103,7 @@ export default class Game extends Scene {
         this.crops.value = 10;
         this.background.state = "pre";
         this.nuked = false;
+        this.vignette.visible = false;
 
         this.engine.input.pointers.primary.once("down", () => this.statePlay());
     }
@@ -168,6 +172,8 @@ export default class Game extends Scene {
 
     private readonly nukeRabbits = (evt: GameEvent<any>) => {
         if (!this.nuked) {
+            this.nuked = true;
+            this.vignette.visible = true;
             this.background.state = "post";
 
             this.nuclearWind.loop = true;
@@ -175,9 +181,8 @@ export default class Game extends Scene {
                 .then(() => void 0, (err) => console.log("", err));
 
             playMusic("sad");
-
-            this.nuked = true;
         }
+
         this.nuke.detonate((evt as PointerEvent).worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());

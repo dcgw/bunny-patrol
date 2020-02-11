@@ -17,6 +17,7 @@ import nuke from "./game/nuke.png";
 import rabbitSplat from "./game/rabbit-splat2.png";
 import rabbit from "./game/rabbit2.png";
 import reticle from "./game/reticle.png";
+import vignette from "./game/vignette.png";
 import happyMusicMp3 from "./music/happy.mp3";
 import happyMusicOgg from "./music/happy.ogg";
 import sadMusicMp3 from "./music/sad.mp3";
@@ -36,7 +37,8 @@ export default {
     rabbit: new Texture(rabbit),
     rabbitSplat: new Texture(rabbitSplat),
     reticle: new Texture(reticle),
+    vignette: new Texture(vignette),
     happyMusic: new Sound(happyMusicOgg, happyMusicMp3),
     sadMusic: new Sound(sadMusicOgg, sadMusicMp3),
-    titlescreen: new Texture(titlescreen),
+    titlescreen: new Texture(titlescreen)
 };
