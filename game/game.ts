@@ -20,7 +20,7 @@ enum State {
 
 const START_MESSAGE = "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.";
 const CROPS_MESSAGE = "The rabbits ate all the crops.";
-// const CROPS_NUKED_MESSAGE = "There is nothing left for the survivors to eat.";
+const CROPS_NUKED_MESSAGE = "There is nothing left for the survivors to eat.";
 // const DOOMED_MESSAGE = "Oh the humanity! You've doomed mankind.";
 
 const NUKE_COOLDOWN_FRAMES = 60;
@@ -131,7 +131,7 @@ export default class Game extends Scene {
             }
 
             if (this.crops.value <= 0) {
-                this.messageLabel.text = CROPS_MESSAGE;
+                this.messageLabel.text = this.nuked ? CROPS_NUKED_MESSAGE : CROPS_MESSAGE;
                 this.stateEnd();
             }
         }
