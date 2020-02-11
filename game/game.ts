@@ -23,6 +23,8 @@ const CROPS_MESSAGE = "The rabbits ate all the crops.";
 // const CROPS_NUKED_MESSAGE = "There is nothing left for the survivors to eat.";
 // const DOOMED_MESSAGE = "Oh the humanity! You've doomed mankind.";
 
+const NUKE_COOLDOWN_FRAMES = 60;
+
 export default class Game extends Scene {
 
     private readonly messageLabel = glowLabel({
@@ -62,6 +64,7 @@ export default class Game extends Scene {
 
     private state: State = State.intro;
     private nuked: boolean = false;
+    private nukeCooldown: number = 0;
     private readonly nuke = new Nuke();
     private readonly nukeFlash = new NukeFlash();
     private readonly nuclearWind = resources.nuclearWind;
@@ -118,6 +121,10 @@ export default class Game extends Scene {
     public update(engine: Engine, delta: number): void {
         super.update(engine, delta);
 
+        if (this.nukeCooldown > 0) {
+            this.nukeCooldown--;
+        }
+
         if (this.state === State.play) {
             if (Math.random() < 0.009) {
                 this.spawnRabbit();
@@ -171,6 +178,10 @@ export default class Game extends Scene {
     }
 
     private readonly nukeRabbits = (evt: GameEvent<any>) => {
+        if (this.nukeCooldown > 0) {
+            return;
+        }
+
         if (!this.nuked) {
             this.nuked = true;
             this.vignette.visible = true;
@@ -183,6 +194,7 @@ export default class Game extends Scene {
             playMusic("sad");
         }
 
+        this.nukeCooldown = NUKE_COOLDOWN_FRAMES;
         this.nuke.detonate((evt as PointerEvent).worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
