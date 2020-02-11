@@ -63,6 +63,7 @@ export default class Game extends Scene {
     private readonly vignette = new Vignette();
 
     private state: State = State.intro;
+    private spawnRate: number = 0.02;
     private nuked: boolean = false;
     private nukeCooldown: number = 0;
     private readonly nuke = new Nuke();
@@ -105,6 +106,7 @@ export default class Game extends Scene {
 
         this.crops.value = 10;
         this.background.state = "pre";
+        this.spawnRate = 0.02;
         this.nuked = false;
         this.vignette.visible = false;
 
@@ -126,9 +128,12 @@ export default class Game extends Scene {
         }
 
         if (this.state === State.play) {
-            if (Math.random() < 0.009) {
+            if (Math.random() < this.spawnRate) {
                 this.spawnRabbit();
             }
+
+            // Increase spawn rate over time, capped at 0.3
+            this.spawnRate = Math.min(this.spawnRate + 0.00005, 0.3);
 
             if (this.crops.value <= 0) {
                 this.messageLabel.text = this.nuked ? CROPS_NUKED_MESSAGE : CROPS_MESSAGE;
