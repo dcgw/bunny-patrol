@@ -1,10 +1,19 @@
 import {Actor, Animation, Engine, GameEvent, Sound, SpriteSheet, Util} from "excalibur";
+import {ActorArgs} from "excalibur/dist/Actor";
 import resources from "../resources";
 
-const spriteSheet = new SpriteSheet({
+const rabbitSpriteSheet = new SpriteSheet({
     image: resources.rabbit,
     spWidth: 24,
     spHeight: 24,
+    rows: 1,
+    columns: 7
+});
+
+const mutantSpriteSheet = new SpriteSheet({
+    image: resources.mutantRabbit,
+    spWidth: 32,
+    spHeight: 32,
     rows: 1,
     columns: 7
 });
@@ -13,12 +22,19 @@ export default class Rabbit extends Actor {
 
     public active: boolean = false;
 
-    private baseSpeed: number = 1;
+    private readonly baseSpeed: number;
     private hopSpeed: number = 5;
     private hopAnim?: Animation;
     private hopSound: Sound = resources.hop1;
 
+    constructor(config: ActorArgs, private readonly type: "normal" | "mutant" = "normal") {
+        super(config);
+        this.baseSpeed = type === "normal" ? 1 : 1.5;
+    }
+
     public onInitialize(engine: Engine): void {
+        const spriteSheet = this.type === "normal" ? rabbitSpriteSheet : mutantSpriteSheet;
+
         this.addDrawing("sit", spriteSheet.getAnimationByIndices(engine, [0, 1], 166));
         this.setDrawing("sit");
 

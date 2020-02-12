@@ -187,7 +187,7 @@ export default class Game extends Scene {
         const rabbit = new Rabbit({
             pos: new Vector(-16, Util.randomIntInRange(170, 220)),
             isOffScreen: true
-        });
+        }, this.nuked && Math.random() < 0.05 ? "mutant" : "normal");
         rabbit.active = true;
         this.add(rabbit);
     }

@@ -18,6 +18,7 @@ import hop2Mp3 from "./game/hop2.mp3";
 import hop2Ogg from "./game/hop2.ogg";
 import hop3Mp3 from "./game/hop3.mp3";
 import hop3Ogg from "./game/hop3.ogg";
+import mutantRabbit from "./game/mutant-rabbit.png";
 import needle from "./game/needle.png";
 import nuclearWindMp3 from "./game/nuclear-wind.mp3";
 import nuclearWindOgg from "./game/nuclear-wind.ogg";
@@ -44,6 +45,7 @@ export default {
     hop1: new Sound(hopOgg, hopMp3),
     hop2: new Sound(hop2Ogg, hop2Mp3),
     hop3: new Sound(hop3Ogg, hop3Mp3),
+    mutantRabbit: new Texture(mutantRabbit),
     needle: new Texture(needle),
     nuclearWind: new Sound(nuclearWindOgg, nuclearWindMp3),
     nuke: new Texture(nuke),
