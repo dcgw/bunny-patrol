@@ -1,4 +1,4 @@
-import {Actor, Color, Engine, TextAlign, Vector} from "excalibur";
+import {Actor, Engine, TextAlign, Vector} from "excalibur";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
 import resources from "../resources";
@@ -12,8 +12,7 @@ export default class Crops extends Actor {
         text: `${this.cropsValue}`,
         pos: new Vector(2, -3),
         fontSize: 24,
-        textAlign: TextAlign.Left,
-        color: Color.fromHex("FFFFFF")
+        textAlign: TextAlign.Left
     });
 
     public onInitialize(engine: Engine): void {
