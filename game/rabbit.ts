@@ -1,6 +1,7 @@
-import {Actor, Animation, Engine, GameEvent, Sound, SpriteSheet, Util} from "excalibur";
+import {Actor, Animation, Engine, Sound, SpriteSheet, Util} from "excalibur";
 import {ActorArgs} from "excalibur/dist/Actor";
 import resources from "../resources";
+import Game from "./game";
 
 const rabbitSpriteSheet = new SpriteSheet({
     image: resources.rabbit,
@@ -49,7 +50,7 @@ export default class Rabbit extends Actor {
         this.setZIndex(this.pos.y);
 
         this.on("exitviewport", (evt) => {
-            evt.target.scene.emit("eatcrops", new GameEvent<any>());
+            (evt.target.scene as Game).eatCrops();
             evt.target.kill();
         });
     }

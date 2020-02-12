@@ -85,8 +85,10 @@ export default class Game extends Scene {
 
         this.add(this.nuke);
         this.add(this.nukeFlash);
+    }
 
-        this.on("eatcrops", () => this.crops.value--);
+    public eatCrops(): void {
+        this.crops.value--;
     }
 
     public onActivate(): void {
