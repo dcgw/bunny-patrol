@@ -66,7 +66,6 @@ export default class Game extends Scene {
     private nukeCooldown: number = 0;
     private readonly nuke = new Nuke();
     private readonly nukeFlash = new NukeFlash();
-    private readonly nuclearWind = resources.nuclearWind;
 
     constructor(private readonly engine: Engine) {
         super(engine);
@@ -106,6 +105,8 @@ export default class Game extends Scene {
         this.crops.value = 10;
         this.background.state = "pre";
         this.spawnRate = 0.02;
+
+        this.nuke.visible = false;
         this.nuked = false;
         this.geigerCounter.rads = 0;
         this.vignette.visible = false;
@@ -117,7 +118,10 @@ export default class Game extends Scene {
         this.gameOverLabel.visible = false;
         this.gameOverLabel.kill();
         this.rabbits.forEach(rabbit => rabbit.kill());
-        this.nuclearWind.instances.forEach(snd => snd.stop());
+
+        // Cut short any ongoing effects
+        resources.blast.instances.forEach(snd => snd.stop());
+        resources.nuclearWind.instances.forEach(snd => snd.stop());
     }
 
     public update(engine: Engine, delta: number): void {
@@ -201,8 +205,8 @@ export default class Game extends Scene {
             this.background.state = "post";
             this.geigerCounter.visible = true;
 
-            this.nuclearWind.loop = true;
-            this.nuclearWind.play(0.6)
+            resources.nuclearWind.loop = true;
+            resources.nuclearWind.play(0.6)
                 .then(() => void 0, (err) => console.log("", err));
 
             playMusic("sad");
