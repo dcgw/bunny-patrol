@@ -19,18 +19,10 @@ enum State {
     end
 }
 
-const START_MESSAGE = "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.";
-const CROPS_MESSAGE = "The rabbits ate all the crops.";
-const CROPS_NUKED_MESSAGE = "There is nothing left for the survivors to eat.";
-const DOOMED_MESSAGE = "Oh the humanity! You've doomed mankind.";
-
-const NUKE_COOLDOWN_MILLIS = 1000;
-
 export default class Game extends Scene {
 
     private readonly messageLabel = glowLabel({
         ...labelDefaults,
-        text: START_MESSAGE,
         pos: new Vector(160, 50),
         wrapWidth: 260,
         lineHeight: 25
@@ -98,7 +90,7 @@ export default class Game extends Scene {
 
     public onActivate(): void {
         this.state = State.intro;
-        this.messageLabel.text = START_MESSAGE;
+        this.messageLabel.text = "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.";
 
         this.messageLabel.visible = true;
         this.continueLabel.visible = true;
@@ -146,8 +138,10 @@ export default class Game extends Scene {
             // Test lose conditions
             if (this.crops.value <= 0 || this.geigerCounter.rads >= 0.95) {
                 this.messageLabel.text = this.crops.value <= 0
-                    ? this.nuked ? CROPS_NUKED_MESSAGE : CROPS_MESSAGE
-                    : DOOMED_MESSAGE;
+                    ? this.nuked
+                        ? "There is nothing left for the survivors to eat."
+                        : "The rabbits ate all the crops."
+                    : "Oh the humanity! You've doomed mankind.";
                 this.stateEnd();
             }
         }
@@ -214,7 +208,7 @@ export default class Game extends Scene {
             playMusic("sad");
         }
 
-        this.nukeCooldown = NUKE_COOLDOWN_MILLIS;
+        this.nukeCooldown = 1000;
         this.geigerCounter.rads += 0.35;
         this.nuke.detonate((evt as PointerEvent).worldPos);
         this.nukeFlash.flash();
