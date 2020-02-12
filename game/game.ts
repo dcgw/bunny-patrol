@@ -1,4 +1,4 @@
-import {Actor, Color, Engine, GameEvent, Scene, Util, Vector} from "excalibur";
+import {Actor, Color, Engine, GameEvent, Scene, Vector} from "excalibur";
 import {PointerEvent} from "excalibur/dist/Input/Pointer";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
@@ -18,6 +18,8 @@ enum State {
     play,
     end
 }
+
+const rngRange = (min: number, max: number): number => Math.random() * (max - min) + min;
 
 export default class Game extends Scene {
 
@@ -98,7 +100,7 @@ export default class Game extends Scene {
         // Spawn starting rabbits
         for (let i = 0; i < 4; i++) {
             this.add(new Rabbit({
-                pos: new Vector(Util.randomIntInRange(50, 250), Util.randomIntInRange(170, 220))
+                pos: new Vector(rngRange(50, 250), rngRange(170, 220))
             }));
         }
 
@@ -183,7 +185,7 @@ export default class Game extends Scene {
 
     private spawnRabbit(): void {
         const rabbit = new Rabbit({
-            pos: new Vector(-16, Util.randomIntInRange(170, 220)),
+            pos: new Vector(-16, rngRange(170, 220)),
             isOffScreen: true
         }, this.nuked && Math.random() < 0.05 ? "mutant" : "normal");
         rabbit.active = true;
