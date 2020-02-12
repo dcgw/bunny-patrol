@@ -133,23 +133,25 @@ export default class Game extends Scene {
             this.nukeCooldown -= delta;
         }
 
-        if (this.state === State.play) {
-            if (Math.random() < this.spawnRate) {
-                this.spawnRabbit();
-            }
+        if (this.state !== State.play) {
+            return;
+        }
 
-            // Increase spawn rate over time, capped at 0.3
-            this.spawnRate = Math.min(this.spawnRate + (delta * 0.000003), 0.3);
+        if (Math.random() < this.spawnRate) {
+            this.spawnRabbit();
+        }
 
-            // Test lose conditions
-            if (this.crops.value <= 0 || this.geigerCounter.rads >= 0.95) {
-                this.messageLabel.text = this.crops.value <= 0
-                    ? this.nuked
-                        ? "There is nothing left for the survivors to eat."
-                        : "The rabbits ate all the crops."
-                    : "Oh the humanity! You've doomed mankind.";
-                this.stateEnd();
-            }
+        // Increase spawn rate over time, capped at 0.3
+        this.spawnRate = Math.min(this.spawnRate + (delta * 0.000003), 0.3);
+
+        // Test lose conditions
+        if (this.crops.value <= 0 || this.geigerCounter.rads >= 0.95) {
+            this.messageLabel.text = this.crops.value <= 0
+                ? this.nuked
+                    ? "There is nothing left for the survivors to eat."
+                    : "The rabbits ate all the crops."
+                : "Oh the humanity! You've doomed mankind.";
+            this.stateEnd();
         }
     }
 
