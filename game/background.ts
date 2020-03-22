@@ -11,13 +11,13 @@ const spriteSheet = new SpriteSheet({
 
 export default class Background extends Actor {
 
+    public set state(state: "pre" | "post") {
+        this.setDrawing(state);
+    }
+
     public onInitialize(engine: Engine): void {
         this.addDrawing("pre", spriteSheet.getSprite(0));
         this.addDrawing("post", spriteSheet.getSprite(1));
         this.setDrawing("pre");
-    }
-
-    public set state(state: "pre" | "post") {
-        this.setDrawing(state);
     }
 }

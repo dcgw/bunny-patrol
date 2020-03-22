@@ -22,7 +22,6 @@ enum State {
 const rngRange = (min: number, max: number): number => Math.random() * (max - min) + min;
 
 export default class Game extends Scene {
-
     private readonly messageLabel = glowLabel({
         ...labelDefaults,
         pos: new Vector(160, 50),
@@ -71,6 +70,10 @@ export default class Game extends Scene {
 
     constructor(private readonly engine: Engine) {
         super(engine);
+    }
+
+    public get rabbits(): Rabbit[] {
+        return this.actors.filter((actor: Actor): actor is Rabbit => actor instanceof Rabbit);
     }
 
     public onInitialize(engine: Engine): void {
@@ -194,10 +197,6 @@ export default class Game extends Scene {
         }, this.nuked && Math.random() < 0.05 ? "mutant" : "normal");
         rabbit.active = true;
         this.add(rabbit);
-    }
-
-    get rabbits(): Rabbit[] {
-        return this.actors.filter((actor: Actor): actor is Rabbit => actor instanceof Rabbit);
     }
 
     private readonly nukeRabbits = (evt: GameEvent<any>) => {
