@@ -78,13 +78,13 @@ export default class Game extends Scene {
 
     public onInitialize(engine: Engine): void {
         this.add(this.background);
-        this.addUIActor(this.vignette);
-        this.addUIActor(this.crops);
-        this.addUIActor(this.geigerCounter);
-        this.addUIActor(this.messageLabel);
-        this.addUIActor(this.continueLabel);
-        this.addUIActor(this.gameOverLabel);
-        this.addUIActor(this.reticle);
+        this.addScreenElement(this.vignette);
+        this.addScreenElement(this.crops);
+        this.addScreenElement(this.geigerCounter);
+        this.addScreenElement(this.messageLabel);
+        this.addScreenElement(this.continueLabel);
+        this.addScreenElement(this.gameOverLabel);
+        this.addScreenElement(this.reticle);
 
         this.add(this.nuke);
         this.add(this.nukeFlash);

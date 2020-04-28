@@ -28,8 +28,8 @@ export default class Title extends Scene {
         background.addDrawing(resources.titlescreen);
         this.add(background);
 
-        this.addUIActor(this.titleLabel);
-        this.addUIActor(this.startLabel);
+        this.addScreenElement(this.titleLabel);
+        this.addScreenElement(this.startLabel);
 
         this.on("activate", () => {
             playMusic("happy");
