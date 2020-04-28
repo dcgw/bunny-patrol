@@ -1,5 +1,4 @@
-import {Actor, Color, Engine, GameEvent, Scene, Vector} from "excalibur";
-import {PointerEvent} from "excalibur/dist/Input/Pointer";
+import {Actor, Color, Engine, GameEvent, Input, Scene, Vector} from "excalibur";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
 import playMusic from "../music/music";
@@ -219,7 +218,7 @@ export default class Game extends Scene {
 
         this.nukeCooldown = 1000;
         this.geigerCounter.rads += 0.35;
-        this.nuke.detonate((evt as PointerEvent).worldPos);
+        this.nuke.detonate((evt as Input.PointerEvent).worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
     }
