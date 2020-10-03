@@ -25,9 +25,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "webpack --env.production",
+    "lint": "tsc && tslint --project .",
     "semantic-release": "semantic-release",
     "start": "webpack-dev-server --open",
-    "test": "tsc && tslint --project . && ava"
+    "test": "ava"
   },
   "dependencies": {
     "@types/domready": "1.0.0",
