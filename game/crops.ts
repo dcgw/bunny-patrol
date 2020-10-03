@@ -4,7 +4,6 @@ import {labelDefaults} from "../index";
 import resources from "../resources";
 
 export default class Crops extends Actor {
-
     private cropsValue = 10;
 
     private readonly label = glowLabel({

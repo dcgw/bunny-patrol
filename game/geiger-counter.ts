@@ -4,7 +4,6 @@ import {labelDefaults} from "../index";
 import resources from "../resources";
 
 export default class GeigerCounter extends Actor {
-
     public rads = 0;
 
     private readonly label = glowLabel({
@@ -25,8 +24,8 @@ export default class GeigerCounter extends Actor {
         ctx.strokeStyle = "#393124";
         ctx.lineWidth = 1;
 
-        const needleRads: number = this.rads + (Math.random() * 0.02) - 0.01;
-        const theta: number = (needleRads * Math.PI * 0.5) - Math.PI * 0.75;
+        const needleRads: number = this.rads + Math.random() * 0.02 - 0.01;
+        const theta: number = needleRads * Math.PI * 0.5 - Math.PI * 0.75;
         ctx.beginPath();
         ctx.moveTo(0, 12);
         ctx.lineTo(Math.cos(theta) * 30, 12 + Math.sin(theta) * 30);
@@ -40,13 +39,14 @@ export default class GeigerCounter extends Actor {
 
         // Slowly decrease
         if (this.rads > 0) {
-            this.rads -= (0.001 * this.rads);
+            this.rads -= 0.001 * this.rads;
         }
 
         // Play geiger counter clicks
-        if (this.rads > 0.1 && Math.random() < (0.5 * this.rads)) {
-            void [resources.click1, resources.click2, resources.click3][Util.randomIntInRange(0, 2)]
-                .play();
+        if (this.rads > 0.1 && Math.random() < 0.5 * this.rads) {
+            void [resources.click1, resources.click2, resources.click3][
+                Util.randomIntInRange(0, 2)
+            ].play();
         }
     }
 }

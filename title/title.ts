@@ -5,7 +5,6 @@ import playMusic from "../music/music";
 import resources from "../resources";
 
 export default class Title extends Scene {
-
     private readonly titleLabel = glowLabel({
         ...labelDefaults,
         text: "Bunny Patrol",

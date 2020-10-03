@@ -10,7 +10,6 @@ const spriteSheet = new SpriteSheet({
 });
 
 export default class Nuke extends Actor {
-
     private anim?: Animation;
     private sound: Sound = resources.blast;
 

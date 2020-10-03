@@ -20,7 +20,6 @@ const mutantSpriteSheet = new SpriteSheet({
 });
 
 export default class Rabbit extends Actor {
-
     public active = false;
 
     private readonly baseSpeed: number;
@@ -45,11 +44,13 @@ export default class Rabbit extends Actor {
         this.hopAnim.loop = false;
         this.addDrawing("hop", this.hopAnim);
 
-        this.hopSound = [resources.hop1, resources.hop2, resources.hop3][Util.randomIntInRange(0, 2)];
+        this.hopSound = [resources.hop1, resources.hop2, resources.hop3][
+            Util.randomIntInRange(0, 2)
+        ];
 
         this.setZIndex(this.pos.y);
 
-        this.on("exitviewport", (evt) => {
+        this.on("exitviewport", evt => {
             (evt.target.scene as Game).eatCrops();
             evt.target.kill();
         });
@@ -79,7 +80,7 @@ export default class Rabbit extends Actor {
 
     private hop(): void {
         this.setDrawing("hop");
-        this.hopSpeed = (Math.random() * this.baseSpeed * 1.3) + this.baseSpeed;
+        this.hopSpeed = Math.random() * this.baseSpeed * 1.3 + this.baseSpeed;
         void this.hopSound.play();
     }
 }

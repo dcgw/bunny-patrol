@@ -1,7 +1,6 @@
 import {Actor, Color, Engine} from "excalibur";
 
 export default class NukeFlash extends Actor {
-
     private alpha = 0;
 
     public onInitialize(engine: Engine): void {

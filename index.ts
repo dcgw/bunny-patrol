@@ -31,10 +31,9 @@ domready(() => {
 
     const loader = new Loader(Object.values(resources));
 
-    void engine.start(loader)
-        .then(() => {
-            engine.addScene("title", new Title(engine));
-            engine.addScene("game", new Game(engine));
-            engine.goToScene("title");
-        });
+    void engine.start(loader).then(() => {
+        engine.addScene("title", new Title(engine));
+        engine.addScene("game", new Game(engine));
+        engine.goToScene("title");
+    });
 });

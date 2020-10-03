@@ -95,7 +95,8 @@ export default class Game extends Scene {
 
     public onActivate(): void {
         this.state = State.intro;
-        this.messageLabel.text = "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.";
+        this.messageLabel.text =
+            "These darn rabbits are eating all of Farmer Bill's crops! He needs you to help deal with them.";
 
         this.messageLabel.visible = true;
         this.continueLabel.visible = true;
@@ -103,9 +104,11 @@ export default class Game extends Scene {
 
         // Spawn starting rabbits
         for (let i = 0; i < 4; i++) {
-            this.add(new Rabbit({
-                pos: new Vector(rngRange(50, 250), rngRange(170, 220))
-            }));
+            this.add(
+                new Rabbit({
+                    pos: new Vector(rngRange(50, 250), rngRange(170, 220))
+                })
+            );
         }
 
         this.crops.value = 10;
@@ -146,15 +149,16 @@ export default class Game extends Scene {
         }
 
         // Increase spawn rate over time, capped at 0.3
-        this.spawnRate = Math.min(this.spawnRate + (delta * 0.000003), 0.3);
+        this.spawnRate = Math.min(this.spawnRate + delta * 0.000003, 0.3);
 
         // Test lose conditions
         if (this.crops.value <= 0 || this.geigerCounter.rads >= 0.95) {
-            this.messageLabel.text = this.crops.value <= 0
-                ? this.nuked
-                    ? "There is nothing left for the survivors to eat."
-                    : "The rabbits ate all the crops."
-                : "Oh the humanity! You've doomed mankind.";
+            this.messageLabel.text =
+                this.crops.value <= 0
+                    ? this.nuked
+                        ? "There is nothing left for the survivors to eat."
+                        : "The rabbits ate all the crops."
+                    : "Oh the humanity! You've doomed mankind.";
             this.stateEnd();
         }
     }
@@ -168,7 +172,7 @@ export default class Game extends Scene {
         this.reticle.visible = true;
         this.engine.canvas.style.cursor = "none";
 
-        this.rabbits.forEach(rabbit => rabbit.active = true);
+        this.rabbits.forEach(rabbit => (rabbit.active = true));
 
         this.engine.input.pointers.primary.on("down", this.nukeRabbits);
     }
@@ -190,10 +194,13 @@ export default class Game extends Scene {
     }
 
     private spawnRabbit(): void {
-        const rabbit = new Rabbit({
-            pos: new Vector(-16, rngRange(170, 220)),
-            isOffScreen: true
-        }, this.nuked && Math.random() < 0.05 ? "mutant" : "normal");
+        const rabbit = new Rabbit(
+            {
+                pos: new Vector(-16, rngRange(170, 220)),
+                isOffScreen: true
+            },
+            this.nuked && Math.random() < 0.05 ? "mutant" : "normal"
+        );
         rabbit.active = true;
         this.add(rabbit);
     }
@@ -220,5 +227,5 @@ export default class Game extends Scene {
         this.nuke.detonate(evt.worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
-    }
+    };
 }

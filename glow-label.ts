@@ -8,8 +8,14 @@ export interface GlowLabelArgs extends LabelArgs {
     lineHeight?: number;
 }
 
-const drawText = (ctx: CanvasRenderingContext2D, text: string, glowWidth: number,
-                  glowColor: Color, yOffset: number, maxWidth?: number): void => {
+const drawText = (
+    ctx: CanvasRenderingContext2D,
+    text: string,
+    glowWidth: number,
+    glowColor: Color,
+    yOffset: number,
+    maxWidth?: number
+): void => {
     ctx.shadowBlur = glowWidth;
     ctx.shadowColor = glowColor.toString();
     ctx.lineWidth = glowWidth;
@@ -23,16 +29,22 @@ const drawText = (ctx: CanvasRenderingContext2D, text: string, glowWidth: number
 };
 
 const wrapLines = (ctx: CanvasRenderingContext2D, text: string, wrapWidth: number): string[] =>
-    text.split(/\s+/)
-        .reduce(([line, ...lines]: string[], word) =>
-            !line ? [word] : ctx.measureText(line + " " + word).width < wrapWidth
-                ? [line + " " + word, ...lines]
-                : [word, line, ...lines], [])
+    text
+        .split(/\s+/)
+        .reduce(
+            ([line, ...lines]: string[], word) =>
+                !line
+                    ? [word]
+                    : ctx.measureText(line + " " + word).width < wrapWidth
+                    ? [line + " " + word, ...lines]
+                    : [word, line, ...lines],
+            []
+        )
         .reverse();
 
 export default function glowLabel(config: GlowLabelArgs): Label {
     const label = new Label(config);
-    label.draw = (ctx) => {
+    label.draw = ctx => {
         ctx.save();
         ctx.translate(label.pos.x, label.pos.y);
         ctx.scale(label.scale.x, label.scale.y);
@@ -51,9 +63,9 @@ export default function glowLabel(config: GlowLabelArgs): Label {
 
         const {glowWidth, glowColor, wrapWidth, lineHeight} = config;
         if (wrapWidth && lineHeight) {
-            wrapLines(ctx, label.text, wrapWidth)
-                .forEach((line, idx) =>
-                    drawText(ctx, line, glowWidth, glowColor, idx * lineHeight, label.maxWidth));
+            wrapLines(ctx, label.text, wrapWidth).forEach((line, idx) =>
+                drawText(ctx, line, glowWidth, glowColor, idx * lineHeight, label.maxWidth)
+            );
         } else {
             drawText(ctx, label.text, glowWidth, glowColor, 0, label.maxWidth);
         }

@@ -10,7 +10,6 @@ const spriteSheet = new SpriteSheet({
 });
 
 export default class Background extends Actor {
-
     public set state(state: "pre" | "post") {
         this.setDrawing(state);
     }

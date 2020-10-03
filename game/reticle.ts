@@ -10,7 +10,6 @@ const spriteSheet = new SpriteSheet({
 });
 
 export default class Reticle extends Actor {
-
     public onInitialize(engine: Engine): void {
         this.addDrawing("blink", spriteSheet.getAnimationByIndices(engine, [0, 1], 500));
         this.setDrawing("blink");
