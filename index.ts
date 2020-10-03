@@ -21,16 +21,18 @@ console.log(`Bunny Patrol v${version}`);
 
 domready(() => {
     const engine = new Engine({
-        width: 320,
-        height: 240,
+        viewport: {
+            width: 640,
+            height: 480
+        },
+        resolution: {
+            width: 320,
+            height: 240
+        },
         displayMode: DisplayMode.Fixed,
-        suppressPlayButton: true,
-        suppressHiDPIScaling: true
+        antialiasing: false,
+        suppressPlayButton: true
     });
-
-    engine.canvas.style.width = "640px";
-    engine.canvas.style.height = "480px";
-    engine.canvas.style.imageRendering = "pixelated";
 
     const loader = new Loader(Object.values(resources));
 
