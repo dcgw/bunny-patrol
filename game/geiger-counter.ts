@@ -5,7 +5,7 @@ import resources from "../resources";
 
 export default class GeigerCounter extends Actor {
 
-    public rads: number = 0;
+    public rads = 0;
 
     private readonly label = glowLabel({
         ...labelDefaults,

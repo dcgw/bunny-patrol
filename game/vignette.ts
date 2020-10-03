@@ -3,7 +3,7 @@ import resources from "../resources";
 
 export default class Vignette extends Actor {
 
-    constructor() {
+    public constructor() {
         super({
             anchor: Vector.Zero,
             visible: false

@@ -21,14 +21,14 @@ const mutantSpriteSheet = new SpriteSheet({
 
 export default class Rabbit extends Actor {
 
-    public active: boolean = false;
+    public active = false;
 
     private readonly baseSpeed: number;
-    private hopSpeed: number = 5;
+    private hopSpeed = 5;
     private hopAnim?: Animation;
     private hopSound: Sound = resources.hop1;
 
-    constructor(config: ActorArgs, private readonly type: "normal" | "mutant" = "normal") {
+    public constructor(config: ActorArgs, private readonly type: "normal" | "mutant" = "normal") {
         super(config);
         this.baseSpeed = type === "normal" ? 1 : 1.5;
     }

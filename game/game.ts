@@ -1,4 +1,4 @@
-import {Actor, Color, Engine, GameEvent, Input, Scene, Vector} from "excalibur";
+import {Actor, Color, Engine, Input, Scene, Vector} from "excalibur";
 import glowLabel from "../glow-label";
 import {labelDefaults} from "../index";
 import playMusic from "../music/music";
@@ -61,13 +61,13 @@ export default class Game extends Scene {
     });
 
     private state: State = State.intro;
-    private spawnRate: number = 0.02;
-    private nuked: boolean = false;
-    private nukeCooldown: number = 0;
+    private spawnRate = 0.02;
+    private nuked = false;
+    private nukeCooldown = 0;
     private readonly nuke = new Nuke();
     private readonly nukeFlash = new NukeFlash();
 
-    constructor(private readonly engine: Engine) {
+    public constructor(private readonly engine: Engine) {
         super(engine);
     }
 
@@ -198,7 +198,7 @@ export default class Game extends Scene {
         this.add(rabbit);
     }
 
-    private readonly nukeRabbits = (evt: GameEvent<any>) => {
+    private readonly nukeRabbits = (evt: Input.PointerDownEvent): void => {
         if (this.nukeCooldown > 0) {
             return;
         }
@@ -218,7 +218,7 @@ export default class Game extends Scene {
 
         this.nukeCooldown = 1000;
         this.geigerCounter.rads += 0.35;
-        this.nuke.detonate((evt as Input.PointerEvent).worldPos);
+        this.nuke.detonate(evt.worldPos);
         this.nukeFlash.flash();
         this.rabbits.forEach(rabbit => rabbit.die());
     }
