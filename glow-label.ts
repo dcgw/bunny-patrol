@@ -1,4 +1,4 @@
-import {Color, Label, TextAlign} from "excalibur";
+import {Color, Label} from "excalibur";
 import {LabelArgs} from "excalibur/dist/Label";
 
 export interface GlowLabelArgs extends LabelArgs {
