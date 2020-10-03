@@ -1,4 +1,4 @@
-import domready from "domready";
+import domready = require("domready");
 import {BaseAlign, Color, DisplayMode, Engine, FontUnit, Loader, TextAlign} from "excalibur";
 import Game from "./game/game";
 import {GlowLabelArgs} from "./glow-label";
