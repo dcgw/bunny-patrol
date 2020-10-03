@@ -4,6 +4,7 @@ import Game from "./game/game";
 import {GlowLabelArgs} from "./glow-label";
 import resources from "./resources";
 import Title from "./title/title";
+import {version} from "./package.json";
 
 export const labelDefaults: GlowLabelArgs = {
     fontFamily: "Knewave",
@@ -15,6 +16,8 @@ export const labelDefaults: GlowLabelArgs = {
     glowColor: Color.Black,
     glowWidth: 2.5
 };
+
+console.log(`Bunny Patrol v${version}`);
 
 domready(() => {
     const engine = new Engine({
