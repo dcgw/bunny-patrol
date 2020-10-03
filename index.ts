@@ -33,10 +33,9 @@ domready(() => {
     });
 
     const scale = (): void => {
-        const scaleFactor = Math.floor(Math.min(
-            window.innerWidth / width,
-            window.innerHeight / height
-        ));
+        const scaleFactor = Math.floor(
+            Math.min(window.innerWidth / width, window.innerHeight / height)
+        );
 
         engine.screen.viewport = {width: width * scaleFactor, height: height * scaleFactor};
         engine.screen.applyResolutionAndViewport();
