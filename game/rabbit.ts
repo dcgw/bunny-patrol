@@ -19,17 +19,26 @@ const mutantSpriteSheet = new SpriteSheet({
     columns: 7
 });
 
+export interface RabbitOptions extends ActorArgs {
+    readonly game: Game;
+    readonly type?: "normal" | "mutant";
+}
+
 export default class Rabbit extends Actor {
     public active = false;
 
+    private readonly game: Game;
+    private readonly type: "normal" | "mutant";
     private readonly baseSpeed: number;
     private hopSpeed = 5;
     private hopAnim?: Animation;
     private hopSound: Sound = resources.hop1;
 
-    public constructor(config: ActorArgs, private readonly type: "normal" | "mutant" = "normal") {
-        super(config);
-        this.baseSpeed = type === "normal" ? 1 : 1.5;
+    public constructor(options: RabbitOptions) {
+        super(options);
+        this.game = options.game;
+        this.type = options.type ?? "normal";
+        this.baseSpeed = this.type === "normal" ? 1 : 1.5;
     }
 
     public onInitialize(engine: Engine): void {
@@ -51,7 +60,7 @@ export default class Rabbit extends Actor {
         this.setZIndex(this.pos.y);
 
         this.on("exitviewport", evt => {
-            (evt.target.scene as Game).eatCrops();
+            this.game.eatCrops();
             evt.target.kill();
         });
     }

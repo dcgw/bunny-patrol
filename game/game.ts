@@ -106,6 +106,7 @@ export default class Game extends Scene {
         for (let i = 0; i < 4; i++) {
             this.add(
                 new Rabbit({
+                    game: this,
                     pos: new Vector(rngRange(50, 250), rngRange(170, 220))
                 })
             );
@@ -194,13 +195,12 @@ export default class Game extends Scene {
     }
 
     private spawnRabbit(): void {
-        const rabbit = new Rabbit(
-            {
-                pos: new Vector(-16, rngRange(170, 220)),
-                isOffScreen: true
-            },
-            this.nuked && Math.random() < 0.05 ? "mutant" : "normal"
-        );
+        const rabbit = new Rabbit({
+            game: this,
+            type: this.nuked && Math.random() < 0.05 ? "mutant" : "normal",
+            pos: new Vector(-16, rngRange(170, 220)),
+            isOffScreen: true
+        });
         rabbit.active = true;
         this.add(rabbit);
     }
