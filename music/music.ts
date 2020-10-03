@@ -15,5 +15,5 @@ export default function playMusic(key: "happy" | "sad"): void {
     }
 
     music.loop = true;
-    music.play().then(() => void 0, (err) => console.log("", err));
+    void music.play();
 }

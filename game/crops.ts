@@ -21,8 +21,7 @@ export default class Crops extends Actor {
 
     public set value(value: number) {
         if (value >= 0 && value < this.value) {
-            resources.crunch.play()
-                .then(() => void 0, (err) => console.log("", err));
+            void resources.crunch.play();
         }
         this.cropsValue = Math.max(0, value);
         this.label.text = `${this.cropsValue}`;

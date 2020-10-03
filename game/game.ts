@@ -210,8 +210,7 @@ export default class Game extends Scene {
             this.geigerCounter.visible = true;
 
             resources.nuclearWind.loop = true;
-            resources.nuclearWind.play(0.6)
-                .then(() => void 0, (err) => console.log("", err));
+            void resources.nuclearWind.play(0.6);
 
             playMusic("sad");
         }

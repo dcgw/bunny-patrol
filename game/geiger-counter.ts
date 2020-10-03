@@ -45,8 +45,8 @@ export default class GeigerCounter extends Actor {
 
         // Play geiger counter clicks
         if (this.rads > 0.1 && Math.random() < (0.5 * this.rads)) {
-            [resources.click1, resources.click2, resources.click3][Util.randomIntInRange(0, 2)]
-                .play().then(() => void 0, (err) => console.log("", err));
+            void [resources.click1, resources.click2, resources.click3][Util.randomIntInRange(0, 2)]
+                .play();
         }
     }
 }

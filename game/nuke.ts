@@ -37,7 +37,6 @@ export default class Nuke extends Actor {
         this.anim?.reset();
         this.visible = true;
         this.sound.instances.forEach(snd => snd.stop());
-        this.sound.play()
-            .then(void 0, err => console.log("", err));
+        void this.sound.play();
     }
 }

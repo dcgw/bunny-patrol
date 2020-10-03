@@ -31,10 +31,10 @@ domready(() => {
 
     const loader = new Loader(Object.values(resources));
 
-    engine.start(loader)
+    void engine.start(loader)
         .then(() => {
             engine.addScene("title", new Title(engine));
             engine.addScene("game", new Game(engine));
             engine.goToScene("title");
-        }, (err) => console.log("", err));
+        });
 });
