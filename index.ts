@@ -31,7 +31,8 @@ domready(() => {
         },
         displayMode: DisplayMode.Fixed,
         antialiasing: false,
-        suppressPlayButton: true
+        suppressPlayButton: true,
+        suppressHiDPIScaling: true
     });
 
     const loader = new Loader(Object.values(resources));
