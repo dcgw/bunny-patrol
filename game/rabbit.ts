@@ -90,6 +90,6 @@ export default class Rabbit extends Actor {
     private hop(): void {
         this.setDrawing("hop");
         this.hopSpeed = Math.random() * this.baseSpeed * 1.3 + this.baseSpeed;
-        void this.hopSound.play();
+        void this.hopSound.play(0.25);
     }
 }

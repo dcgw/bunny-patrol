@@ -15,5 +15,5 @@ export default function playMusic(key: "happy" | "sad"): void {
     }
 
     music.loop = true;
-    void music.play();
+    void music.play(0.25);
 }
