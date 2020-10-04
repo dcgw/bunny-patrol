@@ -30,7 +30,6 @@ export default class Rabbit extends Actor {
     private readonly game: Game;
     private readonly type: "normal" | "mutant";
     private readonly baseSpeed: number;
-    private hopSpeed = 5;
     private hopAnim?: Animation;
     private hopSound: Sound = resources.hop1;
 
@@ -72,9 +71,7 @@ export default class Rabbit extends Actor {
             if (this.hopAnim.isDone()) {
                 this.setDrawing("sit");
                 this.hopAnim.reset();
-            } else {
-                // Still hopping
-                this.pos.x += this.hopSpeed;
+                this.vel.setTo(0, 0);
             }
         } else if (this.active && Math.random() <= 0.02) {
             this.hop();
@@ -83,13 +80,14 @@ export default class Rabbit extends Actor {
 
     public die(): void {
         this.active = false;
+        this.vel.setTo(0, 0);
         this.setDrawing("dead");
         this.setZIndex(this.pos.y - 50);
     }
 
     private hop(): void {
         this.setDrawing("hop");
-        this.hopSpeed = Math.random() * this.baseSpeed * 1.3 + this.baseSpeed;
+        this.vel.setTo((Math.random() * this.baseSpeed * 1.3 + this.baseSpeed) * 60, 0);
         void this.hopSound.play(0.25);
     }
 }
