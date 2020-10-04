@@ -56,6 +56,6 @@ const resources = {
     titlescreen: new Texture(titlescreen)
 };
 
-Object.values(resources).forEach(resource => resource.bustCache = false);
+Object.values(resources).forEach(resource => (resource.bustCache = false));
 
 export default resources;
