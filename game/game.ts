@@ -145,7 +145,7 @@ export default class Game extends Scene {
             return;
         }
 
-        if (Math.random() < this.spawnRate) {
+        if (Math.random() < 1 - Math.pow(1 - this.spawnRate, delta * 60 / 1000)) {
             this.spawnRabbit();
         }
 
