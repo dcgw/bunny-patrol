@@ -4,6 +4,6 @@ module.exports = config({
     title: "Bunny Patrol",
     vendor: "dcgw",
     html: {
-        template: "index.html.template"
+        template: "index.html"
     }
 });
