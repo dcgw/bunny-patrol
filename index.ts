@@ -28,7 +28,6 @@ domready(() => {
         resolution: {width, height},
         displayMode: DisplayMode.Fixed,
         antialiasing: false,
-        suppressPlayButton: true,
         suppressHiDPIScaling: true
     });
 
