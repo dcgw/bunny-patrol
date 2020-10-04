@@ -73,7 +73,7 @@ export default class Rabbit extends Actor {
                 this.hopAnim.reset();
                 this.vel.setTo(0, 0);
             }
-        } else if (this.active && Math.random() <= 0.02) {
+        } else if (this.active && Math.random() <= 1 - Math.pow(0.98, (delta * 60) / 1000)) {
             this.hop();
         }
     }
