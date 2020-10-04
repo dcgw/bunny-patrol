@@ -32,7 +32,7 @@ import sadMusicMp3 from "./music/sad.mp3";
 import sadMusicOgg from "./music/sad.ogg";
 import titlescreen from "./title/titlescreen.png";
 
-export default {
+const resources = {
     background: new Texture(background),
     blast: new Sound(blastOgg, blastMp3),
     carrot: new Texture(carrot),
@@ -55,3 +55,7 @@ export default {
     sadMusic: new Sound(sadMusicOgg, sadMusicMp3),
     titlescreen: new Texture(titlescreen)
 };
+
+Object.values(resources).forEach(resource => resource.bustCache = false);
+
+export default resources;
