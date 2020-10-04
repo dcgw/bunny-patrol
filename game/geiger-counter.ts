@@ -39,7 +39,7 @@ export default class GeigerCounter extends Actor {
 
         // Slowly decrease
         if (this.rads > 0) {
-            this.rads -= 0.001 * this.rads;
+            this.rads = Math.pow(0.999, delta * 60 / 1000) * this.rads;
         }
 
         // Play geiger counter clicks
