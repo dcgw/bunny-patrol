@@ -11,7 +11,7 @@ export default class Title extends Scene {
         pos: new Vector(160, 45),
         fontSize: 40,
         color: Color.fromHex("999933")
-    })
+    });
 
     private readonly startLabel = new Label({
         ...defaultLabelOptions,

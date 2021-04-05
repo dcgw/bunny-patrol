@@ -81,7 +81,10 @@
       "main"
     ],
     "releaseRules": [
-      {"type": "refactor", "release": "patch"}
+      {
+        "type": "refactor",
+        "release": "patch"
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
