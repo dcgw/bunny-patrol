@@ -1,15 +1,15 @@
+import Label from "@dcgw/excalibur-extended-label";
 import {Actor, Engine, TextAlign, Vector} from "excalibur";
-import glowLabel from "../glow-label";
-import {labelDefaults} from "../index";
+import {defaultLabelOptions} from "../index";
 import resources from "../resources";
 
 export default class Crops extends Actor {
     private cropsValue = 10;
 
-    private readonly label = glowLabel({
-        ...labelDefaults,
+    private readonly label = new Label({
+        ...defaultLabelOptions,
         text: `${this.cropsValue}`,
-        pos: new Vector(2, -3),
+        pos: new Vector(2, -4),
         fontSize: 24,
         textAlign: TextAlign.Left
     });

@@ -1,20 +1,20 @@
+import Label from "@dcgw/excalibur-extended-label";
 import {Actor, Color, Engine, Scene, Vector} from "excalibur";
-import glowLabel from "../glow-label";
-import {labelDefaults} from "../index";
+import {defaultLabelOptions} from "../index";
 import playMusic from "../music/music";
 import resources from "../resources";
 
 export default class Title extends Scene {
-    private readonly titleLabel = glowLabel({
-        ...labelDefaults,
+    private readonly titleLabel = new Label({
+        ...defaultLabelOptions,
         text: "Bunny Patrol",
         pos: new Vector(160, 45),
         fontSize: 40,
         color: Color.fromHex("999933")
-    });
+    })
 
-    private readonly startLabel = glowLabel({
-        ...labelDefaults,
+    private readonly startLabel = new Label({
+        ...defaultLabelOptions,
         text: "Click to Play",
         pos: new Vector(160, 195),
         color: Color.fromHex("993333")

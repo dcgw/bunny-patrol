@@ -1,13 +1,13 @@
+import Label from "@dcgw/excalibur-extended-label";
 import {Actor, Engine, Util, Vector} from "excalibur";
-import glowLabel from "../glow-label";
-import {labelDefaults} from "../index";
+import {defaultLabelOptions} from "../index";
 import resources from "../resources";
 
 export default class GeigerCounter extends Actor {
     public rads = 0;
 
-    private readonly label = glowLabel({
-        ...labelDefaults,
+    private readonly label = new Label({
+        ...defaultLabelOptions,
         text: "Atomic Fallout",
         pos: new Vector(0, 22),
         fontSize: 14

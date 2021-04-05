@@ -72,6 +72,15 @@
   dependencies:
     arrify "^1.0.1"
 
+"@dcgw/excalibur-extended-label@1.0.0-alpha.6":
+  version "1.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/@dcgw/excalibur-extended-label/-/excalibur-extended-label-1.0.0-alpha.6.tgz#4e5253220eb82592c8e806547602af5c82b49b2c"
+  integrity sha512-CX38rfzMs+YvIn/+gDymqi1qp3dQnMHrUnKuGMA8DZ7O2MOHQI7XhyIkUqQ6NqpssRClS/BC0VnkA5Srd3DQtQ==
+  dependencies:
+    "@softwareventures/chain" "^0.1.2"
+    "@softwareventures/iterable" "^1.1.1"
+    tslib "2.1.0"
+
 "@eslint/eslintrc@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.0.tgz#99cc0a0584d72f1df38b900fb062ba995f395547"
@@ -476,6 +485,15 @@
     tslib "^1.11.2 || ^2.0.0"
     tslint "^6.1.2"
 
+"@softwareventures/iterable@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@softwareventures/iterable/-/iterable-1.1.1.tgz#f2131b73d81e758e68de254bae08093d05a8e5ec"
+  integrity sha512-FiYOgD8avyZJ8f9PDDfsSAazs5xTkngTiHiHv/ACGX8Oi5akcu36bKiUwyh+JazKLGWNAFzF6DEb79/9PNeRkw==
+  dependencies:
+    "@softwareventures/nullable" "^1.0.0"
+    "@softwareventures/ordered" "^0.2.2"
+    tslib "2.1.0"
+
 "@softwareventures/nullable@^1.0.0":
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/@softwareventures/nullable/-/nullable-1.2.1.tgz#b0fb43f344595d77fc141154737b94ad7561c26b"
@@ -483,7 +501,7 @@
   dependencies:
     tslib "2.1.0"
 
-"@softwareventures/ordered@^0.2.0":
+"@softwareventures/ordered@^0.2.0", "@softwareventures/ordered@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@softwareventures/ordered/-/ordered-0.2.2.tgz#e8b55c57a7219a90e0cc6a27a793c4598e5ae9aa"
   integrity sha512-n3Kkk9jZ+i2Az7YqnJR3TimhsVSiTfwN9ybDfPcJvvCge0cINszO754n4/pdlCyLYVOn2VzTVFDVTrj+xFvNFQ==
@@ -6078,7 +6096,6 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
-
 lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"

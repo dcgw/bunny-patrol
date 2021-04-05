@@ -1,6 +1,6 @@
+import Label from "@dcgw/excalibur-extended-label";
 import {Actor, Color, Engine, Input, Scene, Vector} from "excalibur";
-import glowLabel from "../glow-label";
-import {labelDefaults} from "../index";
+import {defaultLabelOptions} from "../index";
 import playMusic from "../music/music";
 import resources from "../resources";
 import Background from "./background";
@@ -21,22 +21,22 @@ enum State {
 const rngRange = (min: number, max: number): number => Math.random() * (max - min) + min;
 
 export default class Game extends Scene {
-    private readonly messageLabel = glowLabel({
-        ...labelDefaults,
+    private readonly messageLabel = new Label({
+        ...defaultLabelOptions,
         pos: new Vector(160, 50),
         wrapWidth: 260,
         lineHeight: 25
     });
 
-    private readonly continueLabel = glowLabel({
-        ...labelDefaults,
+    private readonly continueLabel = new Label({
+        ...defaultLabelOptions,
         text: "Click to Continue",
         pos: new Vector(160, 200),
         color: Color.fromHex("993333")
     });
 
-    private readonly gameOverLabel = glowLabel({
-        ...labelDefaults,
+    private readonly gameOverLabel = new Label({
+        ...defaultLabelOptions,
         text: "GAME OVER",
         pos: new Vector(160, 120),
         fontSize: 28,

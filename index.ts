@@ -1,20 +1,21 @@
 import domready = require("domready");
-import {BaseAlign, Color, DisplayMode, Engine, FontUnit, Loader, TextAlign} from "excalibur";
+import {LabelOptions} from "@dcgw/excalibur-extended-label";
+import {BaseAlign, Color, DisplayMode, Engine, Loader, TextAlign} from "excalibur";
 import Game from "./game/game";
-import {GlowLabelArgs} from "./glow-label";
 import {version} from "./package.json";
 import resources from "./resources";
 import Title from "./title/title";
 
-export const labelDefaults: GlowLabelArgs = {
+export const defaultLabelOptions: LabelOptions = {
     fontFamily: "Knewave",
     fontSize: 18,
-    fontUnit: FontUnit.Px,
     textAlign: TextAlign.Center,
     baseAlign: BaseAlign.Top,
     color: Color.White,
-    glowColor: Color.Black,
-    glowWidth: 2.5
+    outlineColor: new Color(0, 0, 0, 0.5),
+    outlineWidth: 1,
+    shadowColor: Color.Black,
+    shadowBlurRadius: 2
 };
 
 console.log(`Bunny Patrol v${version}`);
