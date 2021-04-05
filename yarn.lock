@@ -72,14 +72,14 @@
   dependencies:
     arrify "^1.0.1"
 
-"@dcgw/excalibur-extended-label@1.0.0-alpha.6":
-  version "1.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@dcgw/excalibur-extended-label/-/excalibur-extended-label-1.0.0-alpha.6.tgz#4e5253220eb82592c8e806547602af5c82b49b2c"
-  integrity sha512-CX38rfzMs+YvIn/+gDymqi1qp3dQnMHrUnKuGMA8DZ7O2MOHQI7XhyIkUqQ6NqpssRClS/BC0VnkA5Srd3DQtQ==
+"@dcgw/excalibur-extended-label@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dcgw/excalibur-extended-label/-/excalibur-extended-label-1.0.0.tgz#08778c8686a846c4d29c10e6093b20ce1147d8c5"
+  integrity sha512-Q01lKynQOOEs5W50AXZdkb1uYe6PzT3kVf6TJlMtzMqzwEiDeKA+MJKCpEkq7XuS1XIoUq3u7OgMBrKuf1703Q==
   dependencies:
     "@softwareventures/chain" "^0.1.2"
     "@softwareventures/iterable" "^1.1.1"
-    tslib "2.1.0"
+    tslib "2.2.0"
 
 "@eslint/eslintrc@^0.4.0":
   version "0.4.0"
@@ -6096,6 +6096,7 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
 lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
