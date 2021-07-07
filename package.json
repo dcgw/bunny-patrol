@@ -1,23 +1,16 @@
 {
   "private": true,
   "name": "@dcgw/bunny-patrol",
-  "description": "TS rewrite of old game made for Pirate Kart 2012-in-one",
   "version": "0.0.0-development",
+  "description": "TS rewrite of old game made for Pirate Kart 2012-in-one",
   "keywords": [
     "game",
-    "typescript",
-    "pirate-kart"
+    "pirate-kart",
+    "typescript"
   ],
-  "author": {
-    "name": "George Weller",
-    "email": "george.weller@gmail.com"
-  },
+  "author": "George Weller <george.weller@gmail.com>",
   "contributors": [
-    {
-      "name": "Daniel Cassidy",
-      "email": "mail@danielcassidy.me.uk",
-      "url": "https://www.danielcassidy.me.uk/"
-    }
+    "Daniel Cassidy <mail@danielcassidy.me.uk> (https://www.danielcassidy.me.uk/)"
   ],
   "homepage": "https://github.com/dcgw/bunny-patrol",
   "bugs": "https://github.com/dcgw/bunny-patrol",
