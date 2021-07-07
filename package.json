@@ -28,7 +28,7 @@
     "node": "^12 || ^14 || >=16"
   },
   "dependencies": {
-    "@dcgw/excalibur-extended-label": "1.1.0",
+    "@dcgw/excalibur-extended-label": "2.0.1",
     "@types/domready": "1.0.0",
     "@types/webpack-env": "1.16.2",
     "domready": "1.0.8",
