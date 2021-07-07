@@ -24,6 +24,9 @@
     "start": "webpack-dev-server --open",
     "test": "ava"
   },
+  "engines": {
+    "node": "^12 || ^14 || >=16"
+  },
   "dependencies": {
     "@dcgw/excalibur-extended-label": "1.1.0",
     "@types/domready": "1.0.0",
