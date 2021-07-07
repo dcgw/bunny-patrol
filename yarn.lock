@@ -480,7 +480,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
   integrity sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==
 
-"@softwareventures/array@3.10.0", "@softwareventures/array@^0.31.0 || ^0.33.0 || ^2.0.0 || ^3.0.0":
+"@softwareventures/array@3.10.0":
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/@softwareventures/array/-/array-3.10.0.tgz#d02de7bbe8486c5bfc0203ca412723ef55c1a97d"
   integrity sha512-xMVf8RLF97w95jzyioXlLJVyZiBISih2yKULP1mV1n2pSE8QyhOfLhgcbjVrRYKZNm0vXT8wusPcrF8rcDuieA==
@@ -490,6 +490,15 @@
     "@softwareventures/ordered" "^0.2.0"
     dictionary-types "^1.2.0"
     tslib "^1.9.3 || ^2.0.0"
+
+"@softwareventures/array@^0.31.0 || ^0.33.0 || ^2.0.0 || ^3.0.0 || ^4.0.0":
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/@softwareventures/array/-/array-4.1.3.tgz#fbcf5fb649c5ae8611e64c398bcb57203531a7d1"
+  integrity sha512-/ThQEaiQb8PuipPfH6DdwRp4Xq6nsOzkUDWRtOQ+EstA8KXgSa9bzQNSYKkIBGQ4qjvfQKHOqVrh75CdZ3iE8Q==
+  dependencies:
+    "@softwareventures/nullable" "^1.0.0 || ^1.0.0 || ^1.2.1 || ^2.0.0"
+    "@softwareventures/ordered" "^0.2.0 || ^1.0.0"
+    tslib "^2.0.0"
 
 "@softwareventures/chain@^0.1.2 || ^1.0.0":
   version "1.0.0"
@@ -528,19 +537,19 @@
     "@softwareventures/ordered" "^0.2.2 || ^1.0.0"
     tslib "2.3.0"
 
+"@softwareventures/nullable@^1.0.0 || ^1.0.0 || ^1.2.1 || ^2.0.0", "@softwareventures/nullable@^1.0.0 || ^1.2.1 || ^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@softwareventures/nullable/-/nullable-2.0.0.tgz#d11498c5fe71bb0b94ba85a40e774c19c721c5d3"
+  integrity sha512-zx+FMgB4MqmqIiCglgP8GZIYPw57yFBuz/jh0kXNAoEtSRl3LkwhaGG0b/y5yae2RsYSaVkNotQaSmJRt5GahA==
+  dependencies:
+    tslib "2.3.0"
+
 "@softwareventures/nullable@^1.0.0 || ^1.2.1":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@softwareventures/nullable/-/nullable-1.4.0.tgz#00d51ae9082ce3f338e394e8263a72a12ae3acfa"
   integrity sha512-hds7X6hRqgUQz9L850FCaRFxW/whMc4eOCbJtekeZIiAoczhaw2xQrq5sT+8KZV5MkX8ZddtfMkARwYxFmYwDA==
   dependencies:
     tslib "2.2.0"
-
-"@softwareventures/nullable@^1.0.0 || ^1.2.1 || ^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@softwareventures/nullable/-/nullable-2.0.0.tgz#d11498c5fe71bb0b94ba85a40e774c19c721c5d3"
-  integrity sha512-zx+FMgB4MqmqIiCglgP8GZIYPw57yFBuz/jh0kXNAoEtSRl3LkwhaGG0b/y5yae2RsYSaVkNotQaSmJRt5GahA==
-  dependencies:
-    tslib "2.3.0"
 
 "@softwareventures/ordered@^0.2.0":
   version "0.2.4"
@@ -549,7 +558,7 @@
   dependencies:
     tslib "^1.9.3 || ^2.0.0 || ^2.1.0"
 
-"@softwareventures/ordered@^0.2.2 || ^1.0.0":
+"@softwareventures/ordered@^0.2.0 || ^1.0.0", "@softwareventures/ordered@^0.2.2 || ^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@softwareventures/ordered/-/ordered-1.0.0.tgz#d803eef43bb0b4ccfcd78d2928fe38b5109ad99e"
   integrity sha512-SUFUYDWEPAS54LpGH+mRHwkGuTINPDt4OOS3h/Zr9f12JPFz2cqh6Xxwg75BZqwaeONuUwmklJVMRmgvxSSkPA==
@@ -8629,12 +8638,12 @@ selfsigned@^1.10.8:
   dependencies:
     node-forge "^0.10.0"
 
-semantic-release-s3-upload@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/semantic-release-s3-upload/-/semantic-release-s3-upload-1.0.1.tgz#7191b0beda40d135515dcfea714728d9ee63f6e5"
-  integrity sha512-+U6nDo0rQrqiCcKQbutmbkry2C7odS8Uf+0UzxdjovKw71pDOKJEt59B3458aqWLu/zGx6H/r5G+0Azq9vb6zA==
+semantic-release-s3-upload@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/semantic-release-s3-upload/-/semantic-release-s3-upload-1.0.2.tgz#0c75d1ad7e9cf246b9f54019bc837c561a82e254"
+  integrity sha512-p5WLFVBHAxnuHIZVF7s+w+HVCbUezWqWHmVZOc1/It5oaesrK0w5y5SnMwxxJ21/igbeRBXBSdknBJlK/lDncg==
   dependencies:
-    "@softwareventures/array" "^0.31.0 || ^0.33.0 || ^2.0.0 || ^3.0.0"
+    "@softwareventures/array" "^0.31.0 || ^0.33.0 || ^2.0.0 || ^3.0.0 || ^4.0.0"
     "@softwareventures/chain" "^0.1.2 || ^1.0.0"
     "@types/mime" "^2.0.1"
     aws-sdk "^2.553.0 || ^2.884.0"
