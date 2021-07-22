@@ -46,7 +46,7 @@
     "eslint": "7.31.0",
     "prettier": "2.3.2",
     "semantic-release": "17.4.4",
-    "semantic-release-s3-upload": "1.0.2",
+    "semantic-release-s3-upload": "1.0.3",
     "ts-loader": "9.2.3",
     "ts-node": "10.1.0",
     "typescript": "4.3.5",
