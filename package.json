@@ -40,7 +40,7 @@
     "@softwareventures/eslint-config": "4.3.5",
     "@softwareventures/prettier-config": "3.0.0",
     "@softwareventures/tslint-rules": "1.0.0",
-    "@softwareventures/webpack-config": "3.1.4",
+    "@softwareventures/webpack-config": "4.2.0",
     "ava": "4.3.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.25.0",
