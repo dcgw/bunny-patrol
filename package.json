@@ -39,7 +39,7 @@
     "@semantic-release/exec": "5.0.0",
     "@softwareventures/eslint-config": "4.3.5",
     "@softwareventures/prettier-config": "3.0.0",
-    "@softwareventures/tslint-rules": "1.0.0",
+    "@softwareventures/tslint-rules": "2.0.0",
     "@softwareventures/webpack-config": "3.1.5",
     "ava": "4.3.3",
     "cz-conventional-changelog": "3.3.0",
