@@ -44,7 +44,7 @@
     "ava": "4.3.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.36.0",
-    "prettier": "2.8.4",
+    "prettier": "2.8.8",
     "semantic-release": "17.4.7",
     "semantic-release-s3-upload": "1.0.7",
     "ts-loader": "9.4.2",
