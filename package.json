@@ -36,7 +36,7 @@
     "tslib": "2.8.1"
   },
   "devDependencies": {
-    "@semantic-release/exec": "5.0.0",
+    "@semantic-release/exec": "7.1.0",
     "@softwareventures/eslint-config": "4.3.5",
     "@softwareventures/prettier-config": "3.0.0",
     "@softwareventures/tslint-rules": "1.0.0",
